@@ -84,7 +84,7 @@ section {
 
 /* Hero Section - Floating Particles Effect */
 #hero {
-    background: linear-gradient(135deg, var(--charcoal) 0%, var(--smokey-black) 100%);
+    background: linear-gradient(135deg, #1e2a30 0%, var(--smokey-black) 50%, #2a3540 100%);
     color: var(--cream-white);
     text-align: center;
     padding: 6rem 0;
@@ -99,7 +99,8 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--cream-highlight);
+    background: radial-gradient(circle at 20% 50%, rgba(255, 111, 97, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(249, 245, 231, 0.03) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -174,43 +175,55 @@ section {
 
 .cta-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .btn {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 14px 28px;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
+    font-weight: 500;
+    font-size: 0.95rem;
     cursor: pointer;
     border: none;
-    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 140px; /* Ensures consistent width */
+    justify-content: center;
 }
 
 .btn.primary {
-    background: var(--accent-color);
-    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--cream-white);
+    border: 2px solid rgba(255, 111, 97, 0.3);
 }
 
 .btn.primary:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 111, 97, 0.3);
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 111, 97, 0.3);
 }
 
 .btn.secondary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.05);
     color: var(--cream-white);
-    border: 2px solid var(--cream-white);
+    border: 2px solid rgba(255, 111, 97, 0.3);
 }
 
 .btn.secondary:hover {
-    background: var(--cream-white);
-    color: var(--smokey-black);
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 111, 97, 0.3);
 }
 
 /* About Section */
