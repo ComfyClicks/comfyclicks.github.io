@@ -214,24 +214,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Simple fade-in animation on scroll
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.02,
+        rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animate-in');
             }
         });
     }, observerOptions);
 
-    // Observe project cards
+    // Observe project cards - NO inline style setting
     document.querySelectorAll('.project-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
+
+    document.querySelectorAll('.skill-category').forEach(card => {
+        observer.observe(card);
+    });
+
+    document.querySelectorAll('.certification-card').forEach(card => {
+        observer.observe(card);
+    });
+
+
+    
 });

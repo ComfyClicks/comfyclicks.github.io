@@ -1,6 +1,8 @@
 :root {
-    --smokey-black: rgb(52, 58, 64);  /* Lightened from rgb(18, 22, 23) */
-    --cream-white: #F9F5E7;
+    --smokey-black: rgb(52, 58, 64);
+    --cream-white: #f6f8fa;
+    --section-bg: #f1f3f4;
+    /* --section-bg: #fffbeb; */
     --cream-highlight: rgba(245, 245, 220, 0.1);
     --body-text: #333;
     --body-bg: #f8f8f8;
@@ -32,7 +34,7 @@ body {
 
 /* Header */
 header {
-    background: var(--cream-white);
+    background: var(--cream-white); /* Light blue-gray */
     box-shadow: 0 2px 10px rgba(18, 22, 23, 0.1);
     position: fixed;
     top: 0;
@@ -194,7 +196,7 @@ section {
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    min-width: 140px; /* Ensures consistent width */
+    width: 160px;
     justify-content: center;
 }
 
@@ -228,7 +230,7 @@ section {
 
 /* About Section */
 #about {
-    background: var(--cream-white);
+    background: var(--section-bg); /* Darker blue-gray */
     text-align: center;
 }
 
@@ -266,13 +268,20 @@ section {
 }
 
 .project-card {
-    background: var(--cream-white);
+    background: var(--cream-white); /* Light blue-gray */
     border-radius: 10px;
     padding: 0;
     box-shadow: 0 5px 20px rgba(52, 58, 64, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.6s ease;
     border: 1px solid var(--border-color);
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.project-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .project-card:hover {
@@ -449,7 +458,7 @@ section {
 
 /* Excel showcase updates */
 .excel-showcase {
-    background: var(--cream-white);
+    background: var(--cream-white); /* Light blue-gray */
     border-radius: 10px;
     padding: 0;
     margin: 2rem 0;
@@ -505,7 +514,7 @@ section {
 
 /* Excel Integration Showcase */
 .excel-showcase {
-    background: var(--cream-white);
+    background: var(--cream-white); /* Light blue-gray */
     border-radius: 10px;
     padding: 2rem;
     margin: 2rem 0;
@@ -560,7 +569,7 @@ section {
 
 /* Skills Section */
 #skills {
-    background: var(--cream-white);
+    background: var(--section-bg); /* Darker blue-gray */
 }
 
 #skills h2 {
@@ -577,11 +586,19 @@ section {
 }
 
 .skill-category {
-    background: var(--body-bg);
+    background: var(--cream-white); /* Light blue-gray */
     padding: 2rem;
     border-radius: 10px;
     border-left: 4px solid var(--accent-color);
     border: 1px solid var(--border-color);
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.6s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.skill-category.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .skill-category h3 {
@@ -739,12 +756,19 @@ footer {
 }
 
 .certification-card {
-    background: var(--cream-white);
+    background: var(--cream-white); /* Light blue-gray */
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 5px 20px rgba(52, 58, 64, 0.1);
     border: 1px solid var(--border-color);
     transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.certification-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .certification-card:hover {
@@ -1117,10 +1141,6 @@ html {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.project-card {
-    animation: fadeInUp 0.6s ease forwards;
 }
 
 /* Additional Professional Touches */
