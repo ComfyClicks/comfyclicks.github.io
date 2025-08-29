@@ -191,14 +191,57 @@ class PhotoGallery {
 // Initialize all carousels and galleries when page loads
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = targetSection.offsetTop - headerHeight - 10; // 10px extra padding
+            
+            window.scrollTo({
+                top: targetPosition,
                 behavior: 'smooth'
             });
-        });
+        }
     });
+});
+
+    // Mobile hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    // Create backdrop element
+    const backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    document.body.appendChild(backdrop);
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            backdrop.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                backdrop.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking on backdrop
+        backdrop.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+    }
 
     // Initialize carousels
     const carousels = document.querySelectorAll('.project-image-carousel');
@@ -238,7 +281,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.certification-card').forEach(card => {
         observer.observe(card);
     });
-
-
-    
 });
