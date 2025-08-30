@@ -200,7 +200,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         if (targetSection) {
             const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = targetSection.offsetTop - headerHeight - 10; // 10px extra padding
+            const targetPosition = targetSection.offsetTop - headerHeight - 5; // 5px extra padding
             
             window.scrollTo({
                 top: targetPosition,
@@ -269,7 +269,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     }, observerOptions);
 
-    // Observe project cards - NO inline style setting
+    // Observe fade in for different sections
     document.querySelectorAll('.project-card').forEach(card => {
         observer.observe(card);
     });
@@ -279,6 +279,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 
     document.querySelectorAll('.certification-card').forEach(card => {
+        observer.observe(card);
+    });
+
+    document.querySelectorAll('.photo-card').forEach(card => {
         observer.observe(card);
     });
 });
