@@ -285,4 +285,124 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     document.querySelectorAll('.photo-card').forEach(card => {
         observer.observe(card);
     });
+
+    // Image Modal Functionality
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const modalClose = document.querySelector('.modal-close');
+    const modalPrev = document.getElementById('modalPrev');
+    const modalNext = document.getElementById('modalNext');
+    
+    let currentImageIndex = 0;
+    let currentImages = [];
+    
+    // Function to collect all images from a project card
+    function getProjectImages(projectCard) {
+        const images = [];
+        const carouselSlides = projectCard.querySelectorAll('.carousel-slide img');
+        carouselSlides.forEach(img => {
+            if (img.src && !img.src.includes('data:')) {
+                images.push({
+                    src: img.src,
+                    alt: img.alt
+                });
+            }
+        });
+        return images;
+    }
+    
+    // Function to open modal
+    function openModal(imageSrc, imageAlt, images, startIndex = 0) {
+        currentImages = images;
+        currentImageIndex = startIndex;
+        
+        modalImage.src = imageSrc;
+        modalImage.alt = imageAlt;
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+    
+    // Function to close modal
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+    
+    // Function to show next/prev image with circular navigation
+    function showImage(direction) {
+        if (direction === 'next') {
+            // Go to first image if at last image
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+        } else if (direction === 'prev') {
+            // Go to last image if at first image
+            currentImageIndex = currentImageIndex === 0 ? currentImages.length - 1 : currentImageIndex - 1;
+        }
+        
+        const currentImg = currentImages[currentImageIndex];
+        modalImage.src = currentImg.src;
+        modalImage.alt = currentImg.alt;
+    }
+    
+    // Add click listeners to all project card images
+    document.querySelectorAll('.project-card').forEach(projectCard => {
+        const images = getProjectImages(projectCard);
+        const carouselImages = projectCard.querySelectorAll('.carousel-slide img');
+        
+        carouselImages.forEach((img, index) => {
+            if (img.src && !img.src.includes('data:')) {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal(img.src, img.alt, images, index);
+                });
+            }
+        });
+    });
+    
+    // Also add to photography gallery images
+    document.querySelectorAll('.photo-card img').forEach((img, index) => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Collect all photo gallery images
+            const allPhotoImages = Array.from(document.querySelectorAll('.photo-card img')).map(photoImg => ({
+                src: photoImg.src,
+                alt: photoImg.alt
+            }));
+            
+            openModal(img.src, img.alt, allPhotoImages, index);
+        });
+    });
+    
+    // Modal event listeners
+    modalClose.addEventListener('click', closeModal);
+    modalPrev.addEventListener('click', () => showImage('prev'));
+    modalNext.addEventListener('click', () => showImage('next'));
+    
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Keyboard navigation with circular scrolling
+    document.addEventListener('keydown', function(e) {
+        if (modal.style.display === 'block') {
+            switch(e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'ArrowLeft':
+                    showImage('prev');
+                    break;
+                case 'ArrowRight':
+                    showImage('next');
+                    break;
+            }
+        }
+    });
 });
