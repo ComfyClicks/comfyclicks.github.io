@@ -1069,6 +1069,8 @@ section {
 .contact-links a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 125px;
     gap: 0.5rem;
     padding: 14px 28px;
     background: rgba(255, 255, 255, 0.05);
