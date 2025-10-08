@@ -561,18 +561,21 @@ section {
 .excel-showcase {
     background: var(--cream-white);
     border-radius: 10px;
-    padding: 2rem; /* Changed from padding: 0 */
+    padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 5px 20px rgba(52, 58, 64, 0.1);
     border: 1px solid var(--border-color);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .excel-showcase h3 {
     color: var(--smokey-black);
     margin-bottom: 1rem;
-    font-size: 1.5rem; /* Add explicit font size */
-    text-align: center; /* Center the title */
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .excel-showcase p {
@@ -585,57 +588,71 @@ section {
 
 .excel-preview {
     background: var(--body-bg);
-    border: 2px dashed var(--border-color);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
-    padding: 2rem; /* Reduced from 3rem */
+    width: 800px;
+    padding: 1.5rem;
     text-align: center;
     margin: 1rem 0;
-    min-height: 300px; /* Reduced from 400px */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
 }
 
-.excel-placeholder {
-    color: var(--body-text);
-    font-size: 1.2rem; /* Increased font size */
-    margin-bottom: 1rem;
-    font-weight: 600;
+.excel-preview iframe {
+    width: 100%;
+    max-width: 720px;
+    height: 560px;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(52,58,64,0.15);
+    margin-bottom: 1.5rem;
 }
 
-.excel-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-    width: 100%; /* Ensure full width */
-}
-
-.feature-item {
-    background: rgba(255, 111, 97, 0.1);
-    padding: 1rem;
-    border-radius: 6px;
-    text-align: center;
-    border: 1px solid rgba(255, 111, 97, 0.2);
-}
-
-.feature-item strong {
-    color: var(--accent-hover);
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-/* Fix the project links inside excel-showcase */
-.excel-showcase .project-links {
-    margin: 1.5rem 0 0 0; /* Remove bottom margin, add top margin */
-    justify-content: center; /* Center the links */
+/* Center the project links inside excel-preview */
+.excel-preview .project-links {
+    margin: 0;
+    justify-content: center;
 }
 
 .excel-showcase .tech-tags {
     margin-top: 1.5rem;
-    justify-content: center; /* Center the tags */
+    justify-content: center;
+}
+
+/* Mobile adjustments for Excel showcase */
+@media (max-width: 768px) {
+    .excel-showcase {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .excel-preview {
+        padding: 1rem;
+    }
+
+    .excel-preview iframe {
+        height: 400px; /* Reduce height on mobile */
+        max-width: 100%; /* Allow full width on mobile */
+    }
+
+    .excel-showcase h3 {
+        font-size: 1.3rem;
+    }
+
+    .excel-showcase p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .excel-preview iframe {
+        height: 350px; /* Further reduce height on very small screens */
+    }
 }
 
 /* Skills Section */
@@ -1354,10 +1371,6 @@ nav ul:focus {
     }
 
     .skills-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .excel-features {
         grid-template-columns: 1fr;
     }
 
