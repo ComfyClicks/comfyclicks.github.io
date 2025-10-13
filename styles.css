@@ -566,9 +566,6 @@ section {
     box-shadow: 0 5px 20px rgba(52, 58, 64, 0.1);
     border: 1px solid var(--border-color);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .excel-showcase h3 {
@@ -584,16 +581,20 @@ section {
     text-align: center;
     font-size: 1rem;
     line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .excel-preview {
     background: var(--body-bg);
     border: 2px solid var(--border-color);
     border-radius: 8px;
-    width: 1000px;
     padding: 1.5rem;
     text-align: center;
-    margin: 1rem 0;
+    margin: 1rem auto; /* Center the preview */
+    max-width: 1000px; /* Increased from 820px */
+    width: 100%; /* Make it responsive */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -603,7 +604,7 @@ section {
 
 .excel-preview iframe {
     width: 100%;
-    max-width: 720px;
+    max-width: 900px; /* Increased from 820px to better fit larger screens */
     height: 560px;
     border: none;
     border-radius: 8px;
@@ -623,8 +624,20 @@ section {
     justify-content: center;
 }
 
-/* Mobile adjustments for Excel showcase */
-@media (max-width: 768px) {
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+    .excel-preview {
+        max-width: 95%;
+        padding: 1.2rem;
+    }
+    
+    .excel-preview iframe {
+        max-width: 100%;
+        height: 520px;
+    }
+}
+
+@media (max-width: 900px) {
     .excel-showcase {
         padding: 1.5rem;
         margin: 1.5rem 0;
@@ -632,11 +645,25 @@ section {
 
     .excel-preview {
         padding: 1rem;
+        max-width: 100%;
     }
 
     .excel-preview iframe {
-        height: 400px; /* Reduce height on mobile */
-        max-width: 100%; /* Allow full width on mobile */
+        height: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .excel-showcase {
+        padding: 1rem;
+    }
+
+    .excel-preview {
+        padding: 0.8rem;
+    }
+
+    .excel-preview iframe {
+        height: 400px;
     }
 
     .excel-showcase h3 {
@@ -648,10 +675,14 @@ section {
     }
 }
 
-/* Extra small screens */
 @media (max-width: 480px) {
     .excel-preview iframe {
-        height: 350px; /* Further reduce height on very small screens */
+        height: 350px;
+    }
+    
+    .excel-showcase {
+        padding: 0.8rem;
+        margin: 1rem 0;
     }
 }
 
