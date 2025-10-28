@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✨🌐✨ [ComfyClicks.com](https://andywhite.cv) ✨🌐✨
+# ✨🌐✨ [AndyWhite.cv](https://andywhite.cv) ✨🌐✨
 
 **Professional Portfolio Website**
 
