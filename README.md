@@ -1,12 +1,12 @@
 <div align="center">
 
-# ✨🌐✨ [ComfyClicks.com](https://comfyclicks.com) ✨🌐✨
+# ✨🌐✨ [ComfyClicks.com](https://andywhite.cv) ✨🌐✨
 
 **Professional Portfolio Website**
 
 A modern, responsive portfolio showcasing data analysis projects, software development work, and technical certifications with interactive features and clean design.
 
-## 🌐 [Live Preview](https://comfyclicks.com) 
+## 🌐 [Live Preview](https://andywhite.cv) 
 
 #### Technologies Used 
 
@@ -59,7 +59,7 @@ Clean, professional design with subtle animations and a focus on content readabi
 
 - **LinkedIn**: [Andy White](https://www.linkedin.com/in/andywhite5/)
 - **GitHub**: [@ComfyClicks](https://github.com/comfyclicks)
-- **Portfolio**: [ComfyClicks.com](https://comfyclicks.com)
+- **Portfolio**: [ComfyClicks.com](https:/andywhite.cv)
 
 ---
 
