@@ -1,4 +1,59 @@
-// Image Carousel Functionality
+// ── Utilities ──────────────────────────────────────────────
+
+function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+// Shared swipe detection mixin
+const SWIPE_THRESHOLD = 50;
+const SWIPE_VERTICAL_LIMIT = 75; // Max vertical movement before treated as scroll
+
+function createSwipeHandler(el, { onSwipeLeft, onSwipeRight }) {
+    let startX = 0;
+    let startY = 0;
+    let distX = 0;
+    let distY = 0;
+    let tracking = false;
+
+    el.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        distX = 0;
+        distY = 0;
+        tracking = true;
+    }, { passive: true });
+
+    el.addEventListener('touchmove', (e) => {
+        if (!tracking) return;
+        const touch = e.touches[0];
+        distX = touch.clientX - startX;
+        distY = touch.clientY - startY;
+
+        // If mostly horizontal, prevent vertical scroll
+        if (Math.abs(distX) > Math.abs(distY) && Math.abs(distX) > 10) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    el.addEventListener('touchend', () => {
+        if (!tracking) return;
+        tracking = false;
+
+        // Only trigger if horizontal movement exceeds threshold
+        // and vertical movement is within limit
+        if (Math.abs(distY) > SWIPE_VERTICAL_LIMIT) return;
+        if (distX < -SWIPE_THRESHOLD && onSwipeLeft) onSwipeLeft();
+        if (distX > SWIPE_THRESHOLD && onSwipeRight) onSwipeRight();
+    }, { passive: true });
+}
+
+// ── Project Carousel ──────────────────────────────────────
+
 class ProjectCarousel {
     constructor(carouselElement) {
         this.carousel = carouselElement;
@@ -10,22 +65,22 @@ class ProjectCarousel {
         this.currentSlide = 0;
         this.totalSlides = this.slides.length;
 
-        this.init();
+        if (this.totalSlides > 1) this.init();
     }
 
     init() {
-        if (this.totalSlides <= 1) return; // Don't initialize if only one image
-
-        // Add event listeners
         this.prevBtn?.addEventListener('click', () => this.prevSlide());
         this.nextBtn?.addEventListener('click', () => this.nextSlide());
-        
+
         this.dots.forEach((dot, index) => {
             dot.addEventListener('click', () => this.goToSlide(index));
         });
 
-        // Auto-play (optional - uncomment if you want auto-advance)
-        // this.startAutoPlay();
+        // Touch/swipe support
+        createSwipeHandler(this.carousel, {
+            onSwipeLeft: () => this.nextSlide(),
+            onSwipeRight: () => this.prevSlide(),
+        });
 
         this.updateCarousel();
     }
@@ -46,23 +101,15 @@ class ProjectCarousel {
     }
 
     updateCarousel() {
-        // Move container
         this.container.style.transform = `translateX(-${this.currentSlide * 100}%)`;
-        
-        // Update dots
         this.dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === this.currentSlide);
         });
     }
-
-    startAutoPlay() {
-        setInterval(() => {
-            this.nextSlide();
-        }, 5000); // Change slide every 5 seconds
-    }
 }
 
-// Photo Gallery Functionality
+// ── Photo Gallery ─────────────────────────────────────────
+
 class PhotoGallery {
     constructor(galleryElement) {
         this.gallery = galleryElement;
@@ -71,338 +118,335 @@ class PhotoGallery {
         this.prevBtn = galleryElement.querySelector('.gallery-prev');
         this.nextBtn = galleryElement.querySelector('.gallery-next');
         this.indicators = galleryElement.querySelectorAll('.indicator');
-        
+
         this.currentIndex = 0;
-        this.photosPerView = this.getPhotosPerView();
         this.totalPhotos = this.photos.length;
-        this.maxIndex = Math.max(0, this.totalPhotos - this.photosPerView);
-        
+        this.autoScrollInterval = null;
+        this.resumeTimeout = null;
+        this.isUserInteracting = false;
+
+        // Cached measurements (updated on resize)
+        this._cachedCardWidth = 0;
+        this._cachedGalleryWidth = 0;
+        this.photosPerView = 1;
+        this.maxIndex = 0;
+
         this.init();
     }
-    
+
     init() {
-        this.prevBtn?.addEventListener('click', () => this.prev());
-        this.nextBtn?.addEventListener('click', () => this.next());
-        
-        // Add click listeners to indicators
+        this.cacheMeasurements();
+
+        this.prevBtn?.addEventListener('click', () => this.navigateWithPause('prev'));
+        this.nextBtn?.addEventListener('click', () => this.navigateWithPause('next'));
+
         this.indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => this.goToIndicator(index));
+            indicator.addEventListener('click', () => {
+                this.goToIndicator(index);
+                this.pauseAndResume();
+            });
         });
-        
-        // Auto-scroll (optional)
-        this.startAutoScroll();
-        
+
+        // Touch/swipe support
+        createSwipeHandler(this.gallery, {
+            onSwipeLeft: () => this.navigateWithPause('next'),
+            onSwipeRight: () => this.navigateWithPause('prev'),
+        });
+
         // Pause auto-scroll on hover
-        this.gallery.addEventListener('mouseenter', () => this.pauseAutoScroll());
-        this.gallery.addEventListener('mouseleave', () => this.startAutoScroll());
-        
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            this.photosPerView = this.getPhotosPerView();
-            this.maxIndex = Math.max(0, this.totalPhotos - this.photosPerView);
-            this.updateGallery();
+        this.gallery.addEventListener('mouseenter', () => {
+            this.isUserInteracting = true;
+            this.clearAutoScroll();
         });
-        
-        // Initial update
+        this.gallery.addEventListener('mouseleave', () => {
+            this.isUserInteracting = false;
+            this.startAutoScroll();
+        });
+
+        // Debounced resize handler
+        window.addEventListener('resize', debounce(() => {
+            this.cacheMeasurements();
+            this.updateGallery();
+        }, 200), { passive: true });
+
         this.updateGallery();
+        this.startAutoScroll();
     }
-    
+
+    cacheMeasurements() {
+        this._cachedCardWidth = this.photos[0]?.offsetWidth || 300;
+        this._cachedGalleryWidth = this.gallery.offsetWidth;
+        this.photosPerView = this.getPhotosPerView();
+        this.maxIndex = Math.max(0, this.totalPhotos - this.photosPerView);
+        // Clamp current index after resize
+        if (this.currentIndex > this.maxIndex) {
+            this.currentIndex = this.maxIndex;
+        }
+    }
+
     getPhotosPerView() {
-        const containerWidth = this.gallery.offsetWidth;
-        const cardWidth = 300; // Your photo card width
         const gap = 16;
-        const padding = 64; // 2rem on each side
-        
-        const availableWidth = containerWidth - padding;
-        const photosPerView = Math.floor(availableWidth / (cardWidth + gap));
-        
-        return Math.max(1, photosPerView);
+        const padding = 64;
+        const availableWidth = this._cachedGalleryWidth - padding;
+        return Math.max(1, Math.floor(availableWidth / (this._cachedCardWidth + gap)));
     }
-    
-    next() {
-        this.currentIndex = Math.min(this.currentIndex + 1, this.maxIndex);
+
+    navigateWithPause(direction) {
+        if (direction === 'next') {
+            this.currentIndex = Math.min(this.currentIndex + 1, this.maxIndex);
+        } else {
+            this.currentIndex = Math.max(this.currentIndex - 1, 0);
+        }
         this.updateGallery();
+        this.pauseAndResume();
     }
-    
-    prev() {
-        this.currentIndex = Math.max(this.currentIndex - 1, 0);
-        this.updateGallery();
-    }
-    
+
     goToIndicator(indicatorIndex) {
-        // Calculate which photo to show based on indicator clicked
-        // Divide the total scrollable positions by number of indicators
+        if (this.indicators.length <= 1) return;
         const positionsPerIndicator = this.maxIndex / (this.indicators.length - 1);
-        let targetIndex = Math.round(indicatorIndex * positionsPerIndicator);
-        
-        // Ensure we don't exceed bounds
-        targetIndex = Math.min(targetIndex, this.maxIndex);
-        targetIndex = Math.max(targetIndex, 0);
-        
-        this.currentIndex = targetIndex;
+        this.currentIndex = Math.round(
+            Math.min(Math.max(indicatorIndex * positionsPerIndicator, 0), this.maxIndex)
+        );
         this.updateGallery();
     }
-    
+
     updateGallery() {
-        const cardWidth = this.photos[0].offsetWidth;
-        const gap = 16; // 1rem gap
-        const padding = 32; // 2rem padding on each side
-        
-        // Calculate the maximum offset to prevent clipping
-        const containerWidth = this.gallery.offsetWidth;
+        const cardWidth = this._cachedCardWidth;
+        const gap = 16;
+        const padding = 32;
+        const galleryWidth = this._cachedGalleryWidth;
+
         const totalContentWidth = (this.totalPhotos * cardWidth) + ((this.totalPhotos - 1) * gap) + (padding * 2);
-        const maxOffset = Math.max(0, totalContentWidth - containerWidth);
-        
-        // Calculate desired offset
+        const maxOffset = Math.max(0, totalContentWidth - galleryWidth);
+
         let offset = this.currentIndex * (cardWidth + gap);
-        
-        // Limit offset to prevent clipping on the right side
         offset = Math.min(offset, maxOffset);
-        
+
         this.track.style.transform = `translateX(-${offset}px)`;
-        
-        // Update indicators based on current position
-        const currentProgress = this.maxIndex > 0 ? this.currentIndex / this.maxIndex : 0;
-        const activeIndicatorIndex = Math.round(currentProgress * (this.indicators.length - 1));
-        
-        this.indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === activeIndicatorIndex);
+
+        // Update indicators
+        const progress = this.maxIndex > 0 ? this.currentIndex / this.maxIndex : 0;
+        const activeIdx = Math.round(progress * (this.indicators.length - 1));
+        this.indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === activeIdx);
         });
     }
-    
+
     startAutoScroll() {
+        this.clearAutoScroll();
+        if (this.isUserInteracting) return;
         this.autoScrollInterval = setInterval(() => {
-            if (this.currentIndex >= this.maxIndex) {
-                this.currentIndex = 0;
-            } else {
-                this.currentIndex++;
-            }
+            this.currentIndex = this.currentIndex >= this.maxIndex ? 0 : this.currentIndex + 1;
             this.updateGallery();
-        }, 4000); // Change every 4 seconds
+        }, 4000);
     }
-    
-    pauseAutoScroll() {
+
+    clearAutoScroll() {
         if (this.autoScrollInterval) {
             clearInterval(this.autoScrollInterval);
+            this.autoScrollInterval = null;
         }
+    }
+
+    // Pause auto-scroll on user interaction, resume after inactivity
+    pauseAndResume() {
+        this.clearAutoScroll();
+        clearTimeout(this.resumeTimeout);
+        this.resumeTimeout = setTimeout(() => {
+            if (!this.isUserInteracting) this.startAutoScroll();
+        }, 6000);
     }
 }
 
-// Initialize all carousels and galleries when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = targetSection.offsetTop - headerHeight - 5; // 5px extra padding
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+// ── Image Modal ───────────────────────────────────────────
 
-    // Mobile hamburger menu
+class ImageModal {
+    constructor() {
+        this.modal = document.getElementById('imageModal');
+        this.image = document.getElementById('modalImage');
+        this.caption = document.getElementById('modalCaption');
+        this.closeBtn = document.querySelector('.modal-close');
+        this.prevBtn = document.getElementById('modalPrev');
+        this.nextBtn = document.getElementById('modalNext');
+
+        this.images = [];
+        this.currentIndex = 0;
+        this.isOpen = false;
+
+        if (this.modal) this.init();
+    }
+
+    init() {
+        this.closeBtn.addEventListener('click', () => this.close());
+        this.prevBtn.addEventListener('click', () => this.showImage(-1));
+        this.nextBtn.addEventListener('click', () => this.showImage(1));
+
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) this.close();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!this.isOpen) return;
+            if (e.key === 'Escape') this.close();
+            else if (e.key === 'ArrowLeft') this.showImage(-1);
+            else if (e.key === 'ArrowRight') this.showImage(1);
+        });
+
+        // Touch/swipe support for modal
+        createSwipeHandler(this.modal, {
+            onSwipeLeft: () => this.showImage(1),
+            onSwipeRight: () => this.showImage(-1),
+        });
+
+        this.bindProjectImages();
+        this.bindGalleryImages();
+    }
+
+    open(images, startIndex) {
+        this.images = images;
+        this.currentIndex = startIndex;
+        this.image.src = images[startIndex].src;
+        this.image.alt = images[startIndex].alt;
+        this.modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        this.isOpen = true;
+    }
+
+    close() {
+        this.modal.style.display = 'none';
+        document.body.style.overflow = '';
+        this.isOpen = false;
+    }
+
+    showImage(direction) {
+        const len = this.images.length;
+        this.currentIndex = (this.currentIndex + direction + len) % len;
+        const img = this.images[this.currentIndex];
+        this.image.src = img.src;
+        this.image.alt = img.alt;
+    }
+
+    bindProjectImages() {
+        document.querySelectorAll('.project-card').forEach(card => {
+            const images = this.collectImages(card, '.carousel-slide img');
+            card.querySelectorAll('.carousel-slide img').forEach((img, index) => {
+                if (!img.src || img.src.includes('data:')) return;
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.open(images, index);
+                });
+            });
+        });
+    }
+
+    bindGalleryImages() {
+        const galleryImgs = document.querySelectorAll('.photo-card img');
+        const images = Array.from(galleryImgs).map(img => ({ src: img.src, alt: img.alt }));
+        galleryImgs.forEach((img, index) => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.open(images, index);
+            });
+        });
+    }
+
+    collectImages(container, selector) {
+        return Array.from(container.querySelectorAll(selector))
+            .filter(img => img.src && !img.src.includes('data:'))
+            .map(img => ({ src: img.src, alt: img.alt }));
+    }
+}
+
+// ── Smooth Scroll Navigation ──────────────────────────────
+
+function initSmoothScroll() {
+    const header = document.querySelector('header');
+    let cachedHeaderHeight = header ? header.offsetHeight : 0;
+
+    // Update cached height on resize
+    window.addEventListener('resize', debounce(() => {
+        cachedHeaderHeight = header ? header.offsetHeight : 0;
+    }, 200), { passive: true });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                const targetPosition = targetSection.offsetTop - cachedHeaderHeight - 5;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+// ── Mobile Hamburger Menu ─────────────────────────────────
+
+function initHamburgerMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    
-    // Create backdrop element
+    if (!hamburger || !navMenu) return;
+
     const backdrop = document.createElement('div');
     backdrop.className = 'nav-backdrop';
     document.body.appendChild(backdrop);
-    
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            backdrop.classList.toggle('active');
-        });
-        
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                backdrop.classList.remove('active');
-            });
-        });
-        
-        // Close menu when clicking on backdrop
-        backdrop.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            backdrop.classList.remove('active');
-        });
+
+    function toggleMenu(open) {
+        const action = open ? 'add' : 'remove';
+        hamburger.classList[action]('active');
+        navMenu.classList[action]('active');
+        backdrop.classList[action]('active');
     }
 
-    // Initialize carousels
-    const carousels = document.querySelectorAll('.project-image-carousel');
-    carousels.forEach(carousel => {
-        new ProjectCarousel(carousel);
+    hamburger.addEventListener('click', () => {
+        const isOpen = navMenu.classList.contains('active');
+        toggleMenu(!isOpen);
     });
 
-    // Initialize photo gallery
-    const photoGallery = document.querySelector('.photo-gallery');
-    if (photoGallery) {
-        new PhotoGallery(photoGallery);
-    }
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+    });
 
-    // Simple fade-in animation on scroll
-    const observerOptions = {
-        threshold: 0.02,
-        rootMargin: '0px 0px -100px 0px'
-    };
+    backdrop.addEventListener('click', () => toggleMenu(false));
+}
 
+// ── Scroll Animations (IntersectionObserver) ──────────────
+
+function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target); // Stop observing once animated
             }
         });
-    }, observerOptions);
-
-    // Observe fade in for different sections
-    document.querySelectorAll('.project-card').forEach(card => {
-        observer.observe(card);
+    }, {
+        threshold: 0.02,
+        rootMargin: '0px 0px -100px 0px'
     });
 
-    document.querySelectorAll('.skill-category').forEach(card => {
-        observer.observe(card);
+    const selectors = '.project-card, .skill-category, .certification-card, .photo-card';
+    document.querySelectorAll(selectors).forEach(el => observer.observe(el));
+}
+
+// ── Initialize ────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', function () {
+    initSmoothScroll();
+    initHamburgerMenu();
+
+    // Initialize carousels
+    document.querySelectorAll('.project-image-carousel').forEach(el => {
+        new ProjectCarousel(el);
     });
 
-    document.querySelectorAll('.certification-card').forEach(card => {
-        observer.observe(card);
-    });
+    // Initialize photo gallery
+    const galleryEl = document.querySelector('.photo-gallery');
+    if (galleryEl) new PhotoGallery(galleryEl);
 
-    document.querySelectorAll('.photo-card').forEach(card => {
-        observer.observe(card);
-    });
-
-    // Image Modal Functionality
-    const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    const modalCaption = document.getElementById('modalCaption');
-    const modalClose = document.querySelector('.modal-close');
-    const modalPrev = document.getElementById('modalPrev');
-    const modalNext = document.getElementById('modalNext');
-    
-    let currentImageIndex = 0;
-    let currentImages = [];
-    
-    // Function to collect all images from a project card
-    function getProjectImages(projectCard) {
-        const images = [];
-        const carouselSlides = projectCard.querySelectorAll('.carousel-slide img');
-        carouselSlides.forEach(img => {
-            if (img.src && !img.src.includes('data:')) {
-                images.push({
-                    src: img.src,
-                    alt: img.alt
-                });
-            }
-        });
-        return images;
-    }
-    
-    // Function to open modal
-    function openModal(imageSrc, imageAlt, images, startIndex = 0) {
-        currentImages = images;
-        currentImageIndex = startIndex;
-        
-        modalImage.src = imageSrc;
-        modalImage.alt = imageAlt;
-        
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    }
-    
-    // Function to close modal
-    function closeModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = ''; // Restore scrolling
-    }
-    
-    // Function to show next/prev image with circular navigation
-    function showImage(direction) {
-        if (direction === 'next') {
-            // Go to first image if at last image
-            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
-        } else if (direction === 'prev') {
-            // Go to last image if at first image
-            currentImageIndex = currentImageIndex === 0 ? currentImages.length - 1 : currentImageIndex - 1;
-        }
-        
-        const currentImg = currentImages[currentImageIndex];
-        modalImage.src = currentImg.src;
-        modalImage.alt = currentImg.alt;
-    }
-    
-    // Add click listeners to all project card images
-    document.querySelectorAll('.project-card').forEach(projectCard => {
-        const images = getProjectImages(projectCard);
-        const carouselImages = projectCard.querySelectorAll('.carousel-slide img');
-        
-        carouselImages.forEach((img, index) => {
-            if (img.src && !img.src.includes('data:')) {
-                img.style.cursor = 'pointer';
-                img.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openModal(img.src, img.alt, images, index);
-                });
-            }
-        });
-    });
-    
-    // Also add to photography gallery images
-    document.querySelectorAll('.photo-card img').forEach((img, index) => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Collect all photo gallery images
-            const allPhotoImages = Array.from(document.querySelectorAll('.photo-card img')).map(photoImg => ({
-                src: photoImg.src,
-                alt: photoImg.alt
-            }));
-            
-            openModal(img.src, img.alt, allPhotoImages, index);
-        });
-    });
-    
-    // Modal event listeners
-    modalClose.addEventListener('click', closeModal);
-    modalPrev.addEventListener('click', () => showImage('prev'));
-    modalNext.addEventListener('click', () => showImage('next'));
-    
-    // Close modal when clicking outside the image
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Keyboard navigation with circular scrolling
-    document.addEventListener('keydown', function(e) {
-        if (modal.style.display === 'block') {
-            switch(e.key) {
-                case 'Escape':
-                    closeModal();
-                    break;
-                case 'ArrowLeft':
-                    showImage('prev');
-                    break;
-                case 'ArrowRight':
-                    showImage('next');
-                    break;
-            }
-        }
-    });
+    initScrollAnimations();
+    new ImageModal();
 });

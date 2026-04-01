@@ -473,6 +473,7 @@ section {
     display: flex;
     height: 100%;
     transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .carousel-slide {
@@ -857,11 +858,14 @@ section {
     overflow: hidden;
     padding: 20px 0;
     background: rgba(0, 0, 0, 0.02);
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
 }
 
 .photo-track {
     display: flex;
     transition: transform 0.5s ease;
+    will-change: transform;
     gap: 1rem;
     padding: 0 2rem;
     justify-content: flex-start;
