@@ -11,6 +11,7 @@ function debounce(fn, delay) {
 // Shared swipe detection mixin
 const SWIPE_THRESHOLD = 50;
 const SWIPE_VERTICAL_LIMIT = 75; // Max vertical movement before treated as scroll
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function createSwipeHandler(el, { onSwipeLeft, onSwipeRight }) {
     let startX = 0;
@@ -69,6 +70,15 @@ class ProjectCarousel {
     }
 
     init() {
+        const projectTitle = this.carousel.closest('.project-card')?.querySelector('h3')?.textContent?.trim();
+        this.carousel.setAttribute('role', this.carousel.getAttribute('role') || 'group');
+        this.carousel.setAttribute('aria-roledescription', 'carousel');
+        if (!this.carousel.hasAttribute('aria-label') && projectTitle) {
+            this.carousel.setAttribute('aria-label', `${projectTitle} image previews`);
+        }
+        const dotNavigation = this.carousel.querySelector('.carousel-nav');
+        if (dotNavigation) dotNavigation.setAttribute('role', 'group');
+
         this.prevBtn?.addEventListener('click', () => this.prevSlide());
         this.nextBtn?.addEventListener('click', () => this.nextSlide());
 
@@ -104,6 +114,13 @@ class ProjectCarousel {
         this.container.style.transform = `translateX(-${this.currentSlide * 100}%)`;
         this.dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === this.currentSlide);
+            dot.setAttribute('aria-current', index === this.currentSlide ? 'true' : 'false');
+        });
+        this.slides.forEach((slide, index) => {
+            const isActive = index === this.currentSlide;
+            slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+            const interactiveImage = slide.querySelector('img[role="button"]');
+            if (interactiveImage) interactiveImage.tabIndex = isActive ? 0 : -1;
         });
     }
 }
@@ -136,6 +153,7 @@ class PhotoGallery {
 
     init() {
         this.cacheMeasurements();
+        this.gallery.querySelector('.gallery-indicators')?.setAttribute('role', 'group');
 
         this.prevBtn?.addEventListener('click', () => this.navigateWithPause('prev'));
         this.nextBtn?.addEventListener('click', () => this.navigateWithPause('next'));
@@ -229,12 +247,13 @@ class PhotoGallery {
         const activeIdx = Math.round(progress * (this.indicators.length - 1));
         this.indicators.forEach((indicator, i) => {
             indicator.classList.toggle('active', i === activeIdx);
+            indicator.setAttribute('aria-current', i === activeIdx ? 'true' : 'false');
         });
     }
 
     startAutoScroll() {
         this.clearAutoScroll();
-        if (this.isUserInteracting) return;
+        if (this.isUserInteracting || prefersReducedMotion) return;
         this.autoScrollInterval = setInterval(() => {
             this.currentIndex = this.currentIndex >= this.maxIndex ? 0 : this.currentIndex + 1;
             this.updateGallery();
@@ -268,10 +287,13 @@ class ImageModal {
         this.closeBtn = document.querySelector('.modal-close');
         this.prevBtn = document.getElementById('modalPrev');
         this.nextBtn = document.getElementById('modalNext');
+        this.content = this.modal?.querySelector('.modal-content');
 
         this.images = [];
         this.currentIndex = 0;
         this.isOpen = false;
+        this.lastFocused = null;
+        this.pageRegions = Array.from(document.querySelectorAll('header, main, footer'));
 
         if (this.modal) this.init();
     }
@@ -290,6 +312,7 @@ class ImageModal {
             if (e.key === 'Escape') this.close();
             else if (e.key === 'ArrowLeft') this.showImage(-1);
             else if (e.key === 'ArrowRight') this.showImage(1);
+            else if (e.key === 'Tab') this.trapFocus(e);
         });
 
         // Touch/swipe support for modal
@@ -303,27 +326,69 @@ class ImageModal {
     }
 
     open(images, startIndex) {
+        this.lastFocused = document.activeElement;
         this.images = images;
         this.currentIndex = startIndex;
-        this.image.src = images[startIndex].src;
-        this.image.alt = images[startIndex].alt;
+        this.updateImage();
+        this.modal.hidden = false;
         this.modal.style.display = 'block';
+        this.pageRegions.forEach(region => { region.inert = true; });
         document.body.style.overflow = 'hidden';
         this.isOpen = true;
+        this.closeBtn.focus();
     }
 
     close() {
         this.modal.style.display = 'none';
+        this.modal.hidden = true;
+        this.pageRegions.forEach(region => { region.inert = false; });
         document.body.style.overflow = '';
         this.isOpen = false;
+        this.lastFocused?.focus();
     }
 
     showImage(direction) {
         const len = this.images.length;
         this.currentIndex = (this.currentIndex + direction + len) % len;
+        this.updateImage();
+    }
+
+    updateImage() {
         const img = this.images[this.currentIndex];
         this.image.src = img.src;
         this.image.alt = img.alt;
+        this.caption.textContent = `${img.alt} (${this.currentIndex + 1} of ${this.images.length})`;
+        const hasMultipleImages = this.images.length > 1;
+        this.prevBtn.hidden = !hasMultipleImages;
+        this.nextBtn.hidden = !hasMultipleImages;
+    }
+
+    trapFocus(event) {
+        const focusable = Array.from(this.modal.querySelectorAll('button:not([hidden])'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
+    makeImageInteractive(img, onOpen) {
+        img.style.cursor = 'pointer';
+        img.tabIndex = img.closest('.carousel-slide')?.getAttribute('aria-hidden') === 'true' ? -1 : 0;
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', `Open larger view: ${img.alt}`);
+        img.addEventListener('click', onOpen);
+        img.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                onOpen(event);
+            }
+        });
     }
 
     bindProjectImages() {
@@ -331,8 +396,7 @@ class ImageModal {
             const images = this.collectImages(card, '.carousel-slide img');
             card.querySelectorAll('.carousel-slide img').forEach((img, index) => {
                 if (!img.src || img.src.includes('data:')) return;
-                img.style.cursor = 'pointer';
-                img.addEventListener('click', (e) => {
+                this.makeImageInteractive(img, (e) => {
                     e.preventDefault();
                     this.open(images, index);
                 });
@@ -344,8 +408,7 @@ class ImageModal {
         const galleryImgs = document.querySelectorAll('.photo-card img');
         const images = Array.from(galleryImgs).map(img => ({ src: img.src, alt: img.alt }));
         galleryImgs.forEach((img, index) => {
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', (e) => {
+            this.makeImageInteractive(img, (e) => {
                 e.preventDefault();
                 this.open(images, index);
             });
@@ -389,16 +452,28 @@ function initHamburgerMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     if (!hamburger || !navMenu) return;
+    const mobileMenuQuery = window.matchMedia('(max-width: 768px)');
 
     const backdrop = document.createElement('div');
     backdrop.className = 'nav-backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
     document.body.appendChild(backdrop);
+
+    function syncMenuAvailability() {
+        navMenu.inert = mobileMenuQuery.matches && !navMenu.classList.contains('active');
+    }
 
     function toggleMenu(open) {
         const action = open ? 'add' : 'remove';
         hamburger.classList[action]('active');
         navMenu.classList[action]('active');
         backdrop.classList[action]('active');
+        navMenu.inert = !open && mobileMenuQuery.matches;
+        hamburger.setAttribute('aria-expanded', String(open));
+        hamburger.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        backdrop.setAttribute('aria-hidden', String(!open));
+        document.body.classList.toggle('nav-open', open);
+        if (open) navMenu.querySelector('a')?.focus();
     }
 
     hamburger.addEventListener('click', () => {
@@ -411,11 +486,26 @@ function initHamburgerMenu() {
     });
 
     backdrop.addEventListener('click', () => toggleMenu(false));
+    mobileMenuQuery.addEventListener('change', syncMenuAvailability);
+    syncMenuAvailability();
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+            toggleMenu(false);
+            hamburger.focus();
+        }
+    });
 }
 
 // ── Scroll Animations (IntersectionObserver) ──────────────
 
 function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.project-card, .skill-category, .certification-card, .photo-card');
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        animatedElements.forEach(el => el.classList.add('animate-in'));
+        return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -428,8 +518,7 @@ function initScrollAnimations() {
         rootMargin: '0px 0px -100px 0px'
     });
 
-    const selectors = '.project-card, .skill-category, .certification-card, .photo-card';
-    document.querySelectorAll(selectors).forEach(el => observer.observe(el));
+    animatedElements.forEach(el => observer.observe(el));
 }
 
 // ── Initialize ────────────────────────────────────────────

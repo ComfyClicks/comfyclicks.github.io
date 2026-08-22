@@ -3,20 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andy White - Buyer & Operations Analyst</title>
+  <title>Andy White | Product, Engineering &amp; Operations Portfolio</title>
+  <meta name="description" content="Andy White's portfolio of full-stack product engineering, data analysis, business intelligence, and operations projects.">
+  <meta name="author" content="Andy White">
+  <meta name="theme-color" content="#343a40">
+  <link rel="canonical" href="https://andywhite.cv/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Andy White | Product, Engineering &amp; Operations Portfolio">
+  <meta property="og:description" content="Full-stack product engineering, data analysis, business intelligence, and operations projects by Andy White.">
+  <meta property="og:url" content="https://andywhite.cv/">
+  <meta property="og:image" content="https://andywhite.cv/assets/projects/barteraid-home.webp">
+  <meta property="og:image:alt" content="BarterAid cross-asset value platform dashboard">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="./styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header>
-        <nav>
+        <nav aria-label="Primary navigation">
             <h1><a href="#hero" class="logo-link">Andy White</a></h1>
-            <button class="hamburger" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-menu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
             </button>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="primary-menu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -27,7 +39,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section id="hero">
             <div class="particles">
                 <div class="particle"></div>
@@ -44,7 +56,7 @@
                 <div class="particle cream"></div>
             </div>
             <div class="container">
-                <h1>Buyer & Operations Analyst</h1>
+                <h1>Buyer &amp; Operations Analyst</h1>
                 <p>Transforming retail operations through data, process improvement, and technology.</p>
                 <div class="cta-buttons">
                     <a href="#projects" class="btn primary">View Projects</a>
@@ -63,39 +75,74 @@
         <section id="projects">
             <div class="container">
                 <h2>Featured Projects</h2>
-                
-                <!-- Excel Showcase Project -->
-                <div class="excel-showcase">
-                    <h3>🎯 Interactive Retail Dashboard (Excel Online)</h3>
-                    <p>Comprehensive inventory management application built in Excel with advanced formulas, inventory tracking, and interactive charts. Open Interactive Version to explore the live version!</p>
-                    
-                    <div class="excel-preview">
-                        <iframe
-                            width="100%"
-                            height="560"
-                            frameborder="0"
-                            scrolling="no"
-                            style="border-radius: 8px; box-shadow: 0 2px 10px rgba(52,58,64,0.08); background: #fff;"
-                            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR1dUt77TQptDmonD7gL56eBSV3hO-6cm5Nc4RwF9V_h1Pg3idcVvPg1Zr7RaXDCw/pubhtml?widget=true&amp;headers=false"
-                            allowfullscreen
-                            title="Interactive Excel Dashboard">
-                        </iframe>
-                        <div class="project-links">
-                            <a href="https://1drv.ms/x/c/ea506d5d292bc7fd/IQTTc9SDa4RPRKcrD3a8gt_5AYcir9dTVObp_t3yBQQrzck?em=2" target="_blank">🔗 Open Full Interactive Version</a>
+
+                <article class="featured-project-card" aria-labelledby="barteraid-project-title">
+                    <a class="featured-project-visual" href="projects/barteraid.html" aria-label="Explore the BarterAid project">
+                        <img src="assets/projects/barteraid-home.webp" width="1440" height="1000" alt="BarterAid dashboard comparing live metals and cryptocurrency values" decoding="async">
+                    </a>
+                    <div class="featured-project-content">
+                        <p class="project-eyebrow">Featured independent product</p>
+                        <h3 id="barteraid-project-title">BarterAid</h3>
+                        <p class="project-tagline">Understand value beyond dollars.</p>
+                        <p>BarterAid is a full-stack value discovery platform I independently designed and built to make financial value easier to understand. It transforms live market data into cross-asset comparisons, purchasing-power insights, conversions, rankings, portfolio tools, and other ways to understand what assets are actually worth relative to one another.</p>
+                        <div class="project-links featured-project-actions">
+                            <a href="projects/barteraid.html">Explore Project</a>
+                            <a href="https://barteraid.com/" target="_blank" rel="noopener noreferrer">Visit Live Site <span aria-hidden="true">↗</span></a>
+                        </div>
+                        <div class="tech-tags">
+                            <span>Next.js</span>
+                            <span>React</span>
+                            <span>TypeScript</span>
+                            <span>Zustand</span>
+                            <span>Redis</span>
+                            <span>PostgreSQL</span>
+                            <span>Vercel</span>
                         </div>
                     </div>
-                    
-                    <div class="tech-tags">
-                        <span>Advanced Formulas</span>
-                        <span>Conditional Formatting</span>
-                        <span>Real-time Calculations</span>
-                        <span>Visual Charts</span>
-                        <span>Beautiful Formatting</span>
-                    </div>
-                </div>
+                </article>
 
-                <!-- Comfy Cafe -->
                 <div class="project-grid">
+                    <!-- Interactive Retail Dashboard -->
+                    <article class="project-card">
+                        <div class="project-image-carousel" role="group" aria-label="Interactive Retail Dashboard previews">
+                            <div class="carousel-container">
+                                <div class="carousel-slide">
+                                    <img src="assets/projects/retail-dashboard-overview.webp" width="978" height="722" alt="Retail dashboard order guide with daily sales, forecasts, margins, and period totals" loading="lazy" decoding="async">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img class="dashboard-sheet-preview" src="assets/projects/retail-dashboard-bread-mavens.webp" width="1284" height="937" alt="Bread Mavens dashboard with four weeks of product sales, inventory, margins, and daily order trends" loading="lazy" decoding="async">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="assets/projects/retail-dashboard-chart.webp" width="624" height="329" alt="Retail dashboard chart comparing purchased, sold, and spoiled inventory" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+                            <div class="carousel-nav" role="group" aria-label="Choose dashboard preview">
+                                <button class="carousel-dot active" type="button" aria-label="Show dashboard preview 1"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show Bread Mavens dashboard preview"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show inventory chart preview"></button>
+                            </div>
+                            <div class="carousel-arrows">
+                                <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous dashboard preview">‹</button>
+                                <button class="carousel-arrow carousel-next" type="button" aria-label="Next dashboard preview">›</button>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Interactive Retail Dashboard</h3>
+                            <p>Comprehensive inventory management application built in Excel with advanced formulas, inventory tracking, real-time calculations, and interactive charts.</p>
+                            <div class="project-links">
+                                <a href="projects/retail-dashboard.html">View Project</a>
+                                <a href="https://1drv.ms/x/c/ea506d5d292bc7fd/IQTTc9SDa4RPRKcrD3a8gt_5AYcir9dTVObp_t3yBQQrzck?em=2" target="_blank" rel="noopener noreferrer">Open Interactive Version <span aria-hidden="true">↗</span></a>
+                            </div>
+                            <div class="tech-tags">
+                                <span>Excel</span>
+                                <span>Advanced Formulas</span>
+                                <span>Conditional Formatting</span>
+                                <span>Data Visualization</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Comfy Cafe -->
                     <div class="project-card">
                         <div class="project-image-carousel">
                             <div class="carousel-container">
@@ -109,22 +156,22 @@
                                     <img src="assets/projects/comfycafe-3.webp" alt="Comfy Cafe Contact" loading="lazy" decoding="async">
                                 </div>
                             </div>
-                            <div class="carousel-nav">
-                                <div class="carousel-dot active"></div>
-                                <div class="carousel-dot"></div>
-                                <div class="carousel-dot"></div>
+                            <div class="carousel-nav" role="group" aria-label="Choose Comfy Cafe preview">
+                                <button class="carousel-dot active" type="button" aria-label="Show Comfy Cafe preview 1"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show Comfy Cafe preview 2"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show Comfy Cafe preview 3"></button>
                             </div>
                             <div class="carousel-arrows">
-                                <div class="carousel-arrow carousel-prev">‹</div>
-                                <div class="carousel-arrow carousel-next">›</div>
+                                <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous Comfy Cafe preview">‹</button>
+                                <button class="carousel-arrow carousel-next" type="button" aria-label="Next Comfy Cafe preview">›</button>
                             </div>
                         </div>
                         <div class="project-content">
                             <h3>Comfy Cafe Webpage</h3>
                             <p>Elegant, responsive website designed for a local coffee shop featuring modern design principles, smooth animations, and intuitive navigation. Built with semantic HTML, custom CSS, and vanilla JavaScript to showcase menu items, location details, and brand story in a warm, inviting interface.</p>
                             <div class="project-links">
-                                <a href="https://comfyclicks.github.io/Comfy-Cafe/" target="_blank">🌐 Live Preview</a>
-                                <a href="https://github.com/ComfyClicks/Comfy-Cafe" target="_blank">📋 GitHub</a>
+                                <a href="https://comfyclicks.github.io/Comfy-Cafe/" target="_blank" rel="noopener noreferrer">🌐 Live Preview</a>
+                                <a href="https://github.com/ComfyClicks/Comfy-Cafe" target="_blank" rel="noopener noreferrer">📋 GitHub</a>
                             </div>
                             <div class="tech-tags">
                                 <span>HTML/CSS</span>
@@ -150,21 +197,21 @@
                                     <img src="assets/projects/Tableau-03.webp" alt="Tableau Heat Map" loading="lazy" decoding="async">
                                 </div>
                             </div>
-                            <div class="carousel-nav">
-                                <div class="carousel-dot active"></div>
-                                <div class="carousel-dot"></div>
-                                <div class="carousel-dot"></div>
+                            <div class="carousel-nav" role="group" aria-label="Choose Tableau dashboard preview">
+                                <button class="carousel-dot active" type="button" aria-label="Show Tableau preview 1"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show Tableau preview 2"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show Tableau preview 3"></button>
                             </div>
                             <div class="carousel-arrows">
-                                <div class="carousel-arrow carousel-prev">‹</div>
-                                <div class="carousel-arrow carousel-next">›</div>
+                                <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous Tableau preview">‹</button>
+                                <button class="carousel-arrow carousel-next" type="button" aria-label="Next Tableau preview">›</button>
                             </div>
                         </div>
                         <div class="project-content">
                             <h3>Tableau Inventory Dashboard</h3>
                             <p>Interactive dashboard analyzing New York City 311 data across all five buroughs.</p>
                             <div class="project-links">
-                                <a href="https://public.tableau.com/app/profile/andywhite/vizzes" target="_blank">🌐 Live Dashboard</a>
+                                <a href="https://public.tableau.com/app/profile/andywhite/vizzes" target="_blank" rel="noopener noreferrer">🌐 Live Dashboard</a>
                             </div>
                             <div class="tech-tags">
                                 <span>Tableau</span>
@@ -190,22 +237,22 @@
                                     <img src="assets/projects/Docketeer-03.webp" alt="Docketeer Kubernetes dashboard" loading="lazy" decoding="async">
                                 </div>
                             </div>
-                            <div class="carousel-nav">
-                                <div class="carousel-dot active"></div>
-                                <div class="carousel-dot"></div>
-                                <div class="carousel-dot"></div>
+                            <div class="carousel-nav" role="group" aria-label="Choose Docketeer preview">
+                                <button class="carousel-dot active" type="button" aria-label="Show Docketeer preview 1"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show Docketeer preview 2"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show Docketeer preview 3"></button>
                             </div>
                             <div class="carousel-arrows">
-                                <div class="carousel-arrow carousel-prev">‹</div>
-                                <div class="carousel-arrow carousel-next">›</div>
+                                <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous Docketeer preview">‹</button>
+                                <button class="carousel-arrow carousel-next" type="button" aria-label="Next Docketeer preview">›</button>
                             </div>
                         </div>
                         <div class="project-content">
                             <h3>🐳 Docketeer</h3>
                             <p>Docketeer is an open-source user-friendly container management application with intuitive interfaces and visualization tools for Docker containers and Kubernetes clusters. Built to simplify DevOps workflows with real-time monitoring and management capabilities.</p>
                             <div class="project-links">
-                                <a href="https://docketeer.io/" target="_blank">🌐 Project Website</a>
-                                <a href="https://github.com/open-source-labs/Docketeer-Extension" target="_blank">📋 GitHub</a>
+                                <a href="https://docketeer.io/" target="_blank" rel="noopener noreferrer">🌐 Project Website</a>
+                                <a href="https://github.com/open-source-labs/Docketeer-Extension" target="_blank" rel="noopener noreferrer">📋 GitHub</a>
                             </div>
                             <div class="tech-tags">
                                 <span>Docker</span>
@@ -229,21 +276,21 @@
                                     <img src="assets/projects/Library-App-2.webp" alt="Library App Detail" loading="lazy" decoding="async">
                                 </div>
                             </div>
-                            <div class="carousel-nav">
-                                <div class="carousel-dot active"></div>
-                                <div class="carousel-dot"></div>
+                            <div class="carousel-nav" role="group" aria-label="Choose Library App preview">
+                                <button class="carousel-dot active" type="button" aria-label="Show Library App preview 1"></button>
+                                <button class="carousel-dot" type="button" aria-label="Show Library App preview 2"></button>
                             </div>
                             <div class="carousel-arrows">
-                                <div class="carousel-arrow carousel-prev">‹</div>
-                                <div class="carousel-arrow carousel-next">›</div>
+                                <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous Library App preview">‹</button>
+                                <button class="carousel-arrow carousel-next" type="button" aria-label="Next Library App preview">›</button>
                             </div>
                         </div>
                         <div class="project-content">
                             <h3>Library App</h3>
                             <p>A clean, intuitive library management application that allows users to easily add and remove books from their personal collection. Features a minimalist design with responsive layout, smooth animations, and an organized book display system for effortless library organization.</p>
                             <div class="project-links">
-                                <a href="https://comfyclicks.github.io/Library-App/" target="_blank">🌐 Live Preview</a>
-                                <a href="https://github.com/ComfyClicks/Library-App" target="_blank">📋 GitHub</a>
+                                <a href="https://comfyclicks.github.io/Library-App/" target="_blank" rel="noopener noreferrer">🌐 Live Preview</a>
+                                <a href="https://github.com/ComfyClicks/Library-App" target="_blank" rel="noopener noreferrer">📋 GitHub</a>
                             </div>
                             <div class="tech-tags">
                                 <span>HTML/CSS</span>
@@ -267,8 +314,8 @@
                             <h3>✂️ Rock Paper Scissors</h3>
                             <p>Interactive Rock Paper Scissors game featuring clean UI design, score tracking, and smooth animations. Built with vanilla JavaScript and SCSS for enhanced styling capabilities, delivering an engaging user experience with responsive design across all devices.</p>
                             <div class="project-links">
-                                <a href="https://comfyclicks.github.io/Rock-Paper-Scissors/" target="_blank">🌐 Play Game</a>
-                                <a href="https://github.com/ComfyClicks/Rock-Paper-Scissors" target="_blank">📋 GitHub</a>
+                                <a href="https://comfyclicks.github.io/Rock-Paper-Scissors/" target="_blank" rel="noopener noreferrer">🌐 Play Game</a>
+                                <a href="https://github.com/ComfyClicks/Rock-Paper-Scissors" target="_blank" rel="noopener noreferrer">📋 GitHub</a>
                             </div>
                             <div class="tech-tags">
                                 <span>HTML</span>
@@ -279,7 +326,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Tic-Tac-Toe Game -->
                     <div class="project-card">
                         <div class="project-image-carousel">
@@ -293,8 +340,8 @@
                             <h3>Tic-Tac-Toe Game</h3>
                             <p>Classic Tic-Tac-Toe game built with vanilla JavaScript featuring clean UI design, game state management, and win detection logic. Includes player vs player gameplay, game reset functionality, and responsive design for seamless play across all devices.</p>
                             <div class="project-links">
-                                <a href="https://comfyclicks.github.io/Tic-Tac-Toe/" target="_blank">🌐 Play Game</a>
-                                <a href="https://github.com/ComfyClicks/Tic-Tac-Toe" target="_blank">📋 GitHub</a>
+                                <a href="https://comfyclicks.github.io/Tic-Tac-Toe/" target="_blank" rel="noopener noreferrer">🌐 Play Game</a>
+                                <a href="https://github.com/ComfyClicks/Tic-Tac-Toe" target="_blank" rel="noopener noreferrer">📋 GitHub</a>
                             </div>
                             <div class="tech-tags">
                                 <span>HTML/CSS</span>
@@ -314,39 +361,39 @@
             <div class="container">
                 <h2>Technical Skills</h2>
                 <div class="skills-grid">
-               
+
                 <div class="skill-category">
-                    <h3>📊 Data Analysis & Business Intelligence</h3>
+                    <h3>📊 Data Analysis &amp; Business Intelligence</h3>
                     <ul>
                     <li>Power BI (Data Modeling, DAX)</li>
-                    <li>Tableau (Data Visualization & Dashboards)</li>
-                    <li>Excel & Google Sheets (Pivot Tables, Advanced Formulas)</li>
-                    <li>Data Analysis & Forecasting</li>
-                    <li>Generative AI Tools & Prompt Engineering</li>
+                    <li>Tableau (Data Visualization &amp; Dashboards)</li>
+                    <li>Excel &amp; Google Sheets (Pivot Tables, Advanced Formulas)</li>
+                    <li>Data Analysis &amp; Forecasting</li>
+                    <li>Generative AI Tools &amp; Prompt Engineering</li>
                     </ul>
                 </div>
 
                 <div class="skill-category">
-                    <h3>📦 Business & Operations</h3>
+                    <h3>📦 Business &amp; Operations</h3>
                     <ul>
-                    <li>Inventory & Procurement Management</li>
-                    <li>Demand Forecasting & Planning</li>
-                    <li>Product Assortment & Allocation Planning</li>
-                    <li>Process Improvement & Operations Management</li>
-                    <li>Vendor Relations & Cost Negotiation</li>
+                    <li>Inventory &amp; Procurement Management</li>
+                    <li>Demand Forecasting &amp; Planning</li>
+                    <li>Product Assortment &amp; Allocation Planning</li>
+                    <li>Process Improvement &amp; Operations Management</li>
+                    <li>Vendor Relations &amp; Cost Negotiation</li>
                     <li>Cross-Functional Collaboration</li>
                     </ul>
                 </div>
- 
+
                 <div class="skill-category">
                     <h3>💻 Software Development</h3>
                     <ul>
                     <li>JavaScript, TypeScript, React, Node.js</li>
                     <li>HTML/CSS, Responsive Design</li>
-                    <li>APIs & Database Integration</li>
-                    <li>SQL & Relational Databases</li>
+                    <li>APIs &amp; Database Integration</li>
+                    <li>SQL &amp; Relational Databases</li>
                     <li>Non-Relational Databases</li>
-                    <li>Git & GitHub</li>
+                    <li>Git &amp; GitHub</li>
                     </ul>
                 </div>
 
@@ -356,7 +403,7 @@
 
         <section id="certifications">
             <div class="container">
-                <h2>Licenses & Certifications</h2>
+                <h2>Licenses &amp; Certifications</h2>
                 <div class="certifications-grid">
     <div class="certification-card">
         <div class="cert-header">
@@ -372,10 +419,10 @@
             <span>Business Intelligence</span>
             <span>Data Analytics</span>
             <span>Project Management</span>
-            <span>Systems Analysis</span>   
+            <span>Systems Analysis</span>
         </div>
         <div class="cert-actions">
-            <a href="https://www.parchment.com/u/award/a4473c1ff28fa8b5ebdd582a8330807a" target="_blank" class="cert-link">View Degree</a>
+            <a href="https://www.parchment.com/u/award/a4473c1ff28fa8b5ebdd582a8330807a" target="_blank" rel="noopener noreferrer" class="cert-link">View Degree</a>
         </div>
     </div>
 
@@ -420,7 +467,7 @@
             <span>Dashboard Design</span>
         </div>
         <div class="cert-actions">
-            <a href="https://www.udemy.com/certificate/UC-37a622e0-fe33-46b9-b017-43b04edd79d1/" target="_blank" class="cert-link">Show Credential</a>
+            <a href="https://www.udemy.com/certificate/UC-37a622e0-fe33-46b9-b017-43b04edd79d1/" target="_blank" rel="noopener noreferrer" class="cert-link">Show Credential</a>
         </div>
     </div>
 
@@ -440,7 +487,7 @@
             <span>Object-Oriented Programming</span>
         </div>
         <div class="cert-actions">
-            <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/b6d116eb24a276d203685d5e384799057448c477" target="_blank" class="cert-link">Show Credential</a>
+            <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/b6d116eb24a276d203685d5e384799057448c477" target="_blank" rel="noopener noreferrer" class="cert-link">Show Credential</a>
         </div>
     </div>
 
@@ -460,7 +507,7 @@
             <span>Python Libraries</span>
         </div>
         <div class="cert-actions">
-            <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/b2ede9a86809437e950daa29bcf08106f9e5d05f" target="_blank" class="cert-link">Show Credential</a>
+            <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/b2ede9a86809437e950daa29bcf08106f9e5d05f" target="_blank" rel="noopener noreferrer" class="cert-link">Show Credential</a>
         </div>
     </div>
 
@@ -480,20 +527,20 @@
             <span>Data Connectivity</span>
         </div>
         <div class="cert-actions">
-            <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/4d2224012015bbd0dfa782e5b8a6162ada171a58" target="_blank" class="cert-link">Show Credential</a>
+            <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/4d2224012015bbd0dfa782e5b8a6162ada171a58" target="_blank" rel="noopener noreferrer" class="cert-link">Show Credential</a>
         </div>
     </div>
 </div>
             </div>
         </section>
-        
+
         <div class="section-divider"></div>
 
         <section id="photography">
             <div class="container">
                 <h2>Photography</h2>
                 <p class="photography-intro">When I'm not working, I like capture moments and places that inspire me. Here's a selection of my photography.</p>
-                
+
                 <div class="photo-gallery">
                     <div class="photo-track">
                         <div class="photo-card">
@@ -551,21 +598,21 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="gallery-controls">
-                        <button class="gallery-btn gallery-prev" aria-label="Previous photos">‹</button>
-                        <button class="gallery-btn gallery-next" aria-label="Next photos">›</button>
+                        <button class="gallery-btn gallery-prev" type="button" aria-label="Previous photos">‹</button>
+                        <button class="gallery-btn gallery-next" type="button" aria-label="Next photos">›</button>
                     </div>
-                    
-                    <div class="gallery-indicators">
-                        <div class="indicator active"></div>
-                        <div class="indicator"></div>
-                        <div class="indicator"></div>
+
+                    <div class="gallery-indicators" role="group" aria-label="Choose photography gallery position">
+                        <button class="indicator active" type="button" aria-label="Show photography group 1"></button>
+                        <button class="indicator" type="button" aria-label="Show photography group 2"></button>
+                        <button class="indicator" type="button" aria-label="Show photography group 3"></button>
                     </div>
                 </div>
-                
+
                 <div class="instagram-link">
-                    <a href="https://instagram.com/ComfyClicks" target="_blank" class="btn secondary">
+                    <a href="https://instagram.com/ComfyClicks" target="_blank" rel="noopener noreferrer" class="btn secondary">
                         <span>📸 View More on Instagram</span>
                     </a>
                 </div>
@@ -578,13 +625,13 @@
             <div class="container">
                 <h2>Let's Connect</h2>
                 <p class="contact-subtitle">Connect with me on LinkedIn, GitHub, or Instagram!</p>
-                
+
                 <div class="contact-links">
-                    <a href="https://www.linkedin.com/in/andywhite5/" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/comfyclicks" target="_blank">GitHub</a>
-                    <a href="https://instagram.com/ComfyClicks" target="_blank">Instagram</a>
+                    <a href="https://www.linkedin.com/in/andywhite5/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/comfyclicks" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://instagram.com/ComfyClicks" target="_blank" rel="noopener noreferrer">Instagram</a>
                 </div>
-                
+
                 <!-- <div class="contact-cta">
                     <p>Whether you need data analysis, business intelligence solutions, or automation strategies, I'm here to help transform your operations through data-driven insights.</p>
                 </div> -->
@@ -593,21 +640,22 @@
     </main>
 
     <!-- Image Modal -->
-<div id="imageModal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <img id="modalImage" src="" alt="">
-        <div id="modalCaption" class="modal-caption"></div>
+<div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-content" tabindex="-1">
+        <h2 id="modal-title" class="visually-hidden">Image preview</h2>
+        <button class="modal-close" type="button" aria-label="Close image preview">&times;</button>
+        <img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="">
+        <div id="modalCaption" class="modal-caption" aria-live="polite"></div>
         <div class="modal-nav">
-            <button id="modalPrev" class="modal-nav-btn">‹</button>
-            <button id="modalNext" class="modal-nav-btn">›</button>
+            <button id="modalPrev" class="modal-nav-btn" type="button" aria-label="Previous image">‹</button>
+            <button id="modalNext" class="modal-nav-btn" type="button" aria-label="Next image">›</button>
         </div>
     </div>
 </div>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 ComfyClicks</p>
+            <p>&copy; 2026 ComfyClicks</p>
         </div>
     </footer>
 </body>
