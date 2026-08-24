@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comfy Cafe | Modular Vanilla JavaScript Project by Andy White</title>
+  <meta name="description" content="Explore Comfy Cafe, an image-rich restaurant website built by Andy White with modular vanilla JavaScript, custom CSS, and Webpack.">
+  <meta name="author" content="Andy White">
+  <meta name="theme-color" content="#343a40">
+  <link rel="canonical" href="https://andywhite.cv/projects/comfy-cafe.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Comfy Cafe | Modular Vanilla JavaScript Project">
+  <meta property="og:description" content="A responsive cafe experience with client-side navigation, an interactive menu, and a complete AI-generated visual suite.">
+  <meta property="og:url" content="https://andywhite.cv/projects/comfy-cafe.html">
+  <meta property="og:site_name" content="Andy White">
+  <meta property="og:image" content="https://andywhite.cv/assets/projects/comfy-cafe/home.webp">
+  <meta property="og:image:width" content="915">
+  <meta property="og:image:height" content="1039">
+  <meta property="og:image:alt" content="Comfy Cafe homepage with a flower-lined Paris cafe and welcoming hero message">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Comfy Cafe | Modular Vanilla JavaScript Project">
+  <meta name="twitter:description" content="A responsive, image-rich restaurant website built with modular vanilla JavaScript and Webpack.">
+  <meta name="twitter:image" content="https://andywhite.cv/assets/projects/comfy-cafe/home.webp">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js" defer></script>
+</head>
+<body class="case-study-page comfycafe-case-study">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header>
+    <nav aria-label="Primary navigation">
+      <h1><a href="../index.html#hero" class="logo-link">Andy White</a></h1>
+      <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="primary-menu">
+        <li><a href="../index.html">Portfolio</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#engineering">Engineering</a></li>
+        <li><a href="#performance">Performance</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="case-hero comfycafe-hero" id="overview">
+      <div class="container case-hero-grid">
+        <div class="case-hero-copy">
+          <p class="case-kicker">Front-end portfolio project</p>
+          <h1>Comfy Cafe</h1>
+          <p class="case-tagline">A warm, responsive cafe experience built with modular JavaScript.</p>
+          <p class="case-lede">Comfy Cafe is a single-page restaurant website I built with vanilla JavaScript, ES modules, custom CSS, and Webpack. It combines client-side navigation, an image-rich menu, keyboard-supported item browsing, and a responsive contact experience inside one cohesive cafe brand.</p>
+          <div class="case-actions">
+            <a class="btn case-primary-action" href="https://www.andywhite.cv/Comfy-Cafe/" target="_blank" rel="noopener noreferrer">Visit Comfy Cafe <span aria-hidden="true">↗</span></a>
+            <a class="case-text-link" href="https://github.com/ComfyClicks/Comfy-Cafe" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>
+            <a class="case-text-link" href="../index.html#projects">Back to portfolio</a>
+          </div>
+        </div>
+        <figure class="case-hero-media comfycafe-hero-media">
+          <img src="../assets/projects/comfy-cafe/home.webp" width="915" height="1039" alt="Comfy Cafe homepage with a flower-lined Paris cafe, navigation, and welcome message" fetchpriority="high" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <section class="case-section" id="experience">
+      <div class="container cafe-experience-layout">
+        <div class="case-section-heading">
+          <p class="section-label">The experience</p>
+          <h2>A complete restaurant journey in a focused front-end project</h2>
+          <p>The site moves from atmosphere and brand story to a full browsable menu, then closes the loop with location and contact information. Each view is generated in JavaScript while browser history keeps navigation feeling natural.</p>
+        </div>
+        <dl class="production-list cafe-experience-list">
+          <div><dt>Discover</dt><dd>A strong visual landing page establishes the cafe’s personality, story, featured items, hours, and location.</dd></div>
+          <div><dt>Browse</dt><dd>A structured food and beverage menu presents pricing, descriptions, ingredients, and calories across responsive cards.</dd></div>
+          <div><dt>Explore</dt><dd>Item modals support previous and next navigation, keyboard arrows, Escape-to-close behavior, and responsive image sources.</dd></div>
+          <div><dt>Visit</dt><dd>A dedicated contact view brings together location, hours, social links, directions, FAQs, and accessibility information.</dd></div>
+        </dl>
+      </div>
+      <div class="container cafe-menu-showcase">
+        <figure class="case-media-card">
+          <img src="../assets/projects/comfy-cafe/menu.webp" width="1319" height="1215" alt="Comfy Cafe food menu displaying AI-generated pastry images with prices and product details" loading="lazy" decoding="async">
+          <figcaption>The menu turns a full suite of generated food and beverage imagery into a consistent browsing experience.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="case-section case-section-alt" id="engineering">
+      <div class="container cafe-engineering-layout">
+        <div class="case-copy-block">
+          <p class="section-label">Modular vanilla JavaScript</p>
+          <h2>Structured like an application, without a framework</h2>
+          <p>Home, Menu, Contact, and menu data live in separate JavaScript modules. A small page manager coordinates view changes, active navigation state, browser history, mobile navigation, and page-specific stylesheet loading.</p>
+          <p>The menu is generated from reusable data rather than repeated markup. Document fragments reduce unnecessary DOM work, while session state connects featured items on the homepage to their corresponding menu entries.</p>
+        </div>
+        <dl class="technology-list cafe-build-list">
+          <div><dt>Page architecture</dt><dd>ES modules for Home, Menu, Contact, and structured menu data</dd></div>
+          <div><dt>Navigation</dt><dd>History API routing with back and forward behavior</dd></div>
+          <div><dt>Interaction</dt><dd>Responsive navigation, item highlighting, modal browsing, and keyboard controls</dd></div>
+          <div><dt>Loading strategy</dt><dd>Critical home styles up front with menu and contact CSS loaded on demand</dd></div>
+        </dl>
+      </div>
+      <div class="container cafe-contact-showcase">
+        <figure class="case-media-card">
+          <img src="../assets/projects/comfy-cafe/contact.webp" width="1369" height="1208" alt="Comfy Cafe contact page showing address, hours, social links, and an embedded map" loading="lazy" decoding="async">
+          <figcaption>Contact and location information complete the restaurant experience without leaving the application.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="case-section cafe-performance-section" id="performance">
+      <div class="container cafe-performance-layout">
+        <div class="case-section-heading">
+          <p class="section-label">Performance-focused refresh</p>
+          <h2>Refined for a perfect desktop Lighthouse result</h2>
+          <p>A recent optimization pass reached 100 in desktop Lighthouse testing while preserving the image-led design and interactive menu.</p>
+        </div>
+        <dl class="production-list cafe-performance-list">
+          <div><dt>Images</dt><dd>WebP assets, responsive source sets, targeted 640- and 1280-pixel variants, lazy loading, and a preloaded hero reduce image cost.</dd></div>
+          <div><dt>Production build</dt><dd>Webpack extracts and minifies CSS and JavaScript, removes production source maps, and generates cacheable content-hashed assets.</dd></div>
+          <div><dt>Accessibility</dt><dd>Semantic landmarks, button-based navigation, mobile ARIA state, descriptive image text, and keyboard modal controls support more ways to browse.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="case-section technology-section" id="technology">
+      <div class="container case-split technology-layout">
+        <div>
+          <p class="section-label">Technology</p>
+          <h2>A deliberately lightweight stack</h2>
+        </div>
+        <dl class="technology-list">
+          <div><dt>Front end</dt><dd>JavaScript · ES modules · HTML · CSS</dd></div>
+          <div><dt>Tooling &amp; delivery</dt><dd>Webpack · Babel · npm · GitHub Pages</dd></div>
+          <div><dt>Visual production</dt><dd>AI-generated imagery · responsive WebP assets</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="case-closing cafe-closing">
+      <div class="container case-closing-inner">
+        <div class="case-closing-copy">
+          <p class="section-label">Explore the finished project</p>
+          <h2>Pull up a chair at Comfy Cafe.</h2>
+          <p>Browse the complete menu, open individual items, and explore the responsive restaurant experience.</p>
+        </div>
+        <a class="btn case-primary-action" href="https://www.andywhite.cv/Comfy-Cafe/" target="_blank" rel="noopener noreferrer">Visit Comfy Cafe <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container"><p>&copy; 2026 ComfyClicks</p></div>
+  </footer>
+</body>
+</html>
