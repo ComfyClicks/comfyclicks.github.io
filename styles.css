@@ -2228,6 +2228,19 @@ section[id] {
                 radial-gradient(circle at 86% 76%, rgba(249, 245, 231, 0.08), transparent 36%);
 }
 
+.library-hero {
+    background: linear-gradient(135deg, #1d2c32 0%, #11191d 54%, #25424a 100%);
+}
+
+.library-hero::before {
+    background: radial-gradient(circle at 15% 28%, rgba(128, 222, 234, 0.15), transparent 40%),
+                radial-gradient(circle at 88% 76%, rgba(198, 72, 62, 0.1), transparent 36%);
+}
+
+.library-hero-media {
+    transform: rotate(-0.75deg);
+}
+
 .comfycafe-hero-media {
     aspect-ratio: 4 / 3;
     transform: rotate(-1deg);
@@ -2241,7 +2254,8 @@ section[id] {
 
 .cafe-experience-layout,
 .cafe-performance-layout,
-.barteraid-performance-layout {
+.barteraid-performance-layout,
+.library-experience-layout {
     display: grid;
     grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
     gap: clamp(2.5rem, 7vw, 6rem);
@@ -2250,19 +2264,22 @@ section[id] {
 
 .cafe-experience-layout .case-section-heading,
 .cafe-performance-layout .case-section-heading,
-.barteraid-performance-layout .case-section-heading {
+.barteraid-performance-layout .case-section-heading,
+.library-experience-layout .case-section-heading {
     position: sticky;
     top: 110px;
     margin-bottom: 0;
 }
 
 .cafe-menu-showcase,
-.cafe-contact-showcase {
+.cafe-contact-showcase,
+.library-dialog-showcase {
     margin-top: clamp(3.5rem, 7vw, 5.5rem);
 }
 
 .cafe-menu-showcase .case-media-card,
-.cafe-contact-showcase .case-media-card {
+.cafe-contact-showcase .case-media-card,
+.library-dialog-showcase .case-media-card {
     max-width: 980px;
     margin-right: auto;
     margin-left: auto;
@@ -2305,7 +2322,9 @@ section[id] {
 }
 
 .comfycafe-case-study .case-section:not(.cafe-performance-section) .section-label,
-.comfycafe-case-study .case-section:not(.cafe-performance-section) dt {
+.comfycafe-case-study .case-section:not(.cafe-performance-section) dt,
+.library-case-study .case-section .section-label,
+.library-case-study .case-section dt {
     color: var(--accent-hover);
 }
 
@@ -2350,6 +2369,10 @@ section[id] {
     grid-template-columns: minmax(0, 1fr) auto;
 }
 
+.library-closing .case-closing-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
 @media (max-width: 980px) {
     .featured-project-card,
     .case-hero-grid,
@@ -2361,7 +2384,8 @@ section[id] {
     .cafe-modal-feature,
     .cafe-engineering-layout,
     .cafe-performance-layout,
-    .barteraid-performance-layout {
+    .barteraid-performance-layout,
+    .library-experience-layout {
         grid-template-columns: 1fr;
     }
 
@@ -2396,7 +2420,8 @@ section[id] {
     .production-layout .case-section-heading,
     .cafe-experience-layout .case-section-heading,
     .cafe-performance-layout .case-section-heading,
-    .barteraid-performance-layout .case-section-heading {
+    .barteraid-performance-layout .case-section-heading,
+    .library-experience-layout .case-section-heading {
         position: static;
     }
 
@@ -2450,6 +2475,10 @@ section[id] {
     }
 
     .cafe-closing .case-closing-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .library-closing .case-closing-inner {
         grid-template-columns: 1fr;
     }
 
