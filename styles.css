@@ -1880,6 +1880,10 @@ section[id] {
     align-items: start;
 }
 
+.product-media-wide {
+    grid-column: 1 / -1;
+}
+
 .engineering-section {
     color: white;
     background: #202a30;
