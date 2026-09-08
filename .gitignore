@@ -1,6 +1,15 @@
 .DS_Store
 assets/originals/
 
-# Local portfolio design explorations
-/designs/
-/refinements/
+# Documentation
+*.md
+*.pdf
+*.docx
+docs/
+documentation/
+
+# Local portfolio mockups and design explorations
+designs/
+refinements/
+mockups/
+prototypes/

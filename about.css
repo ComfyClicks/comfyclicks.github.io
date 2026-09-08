@@ -1,0 +1,35 @@
+:root { --paper:#f3eee4; --ink:#24332f; --muted:#63706c; --rule:#c7bbab; --accent:#ac563f; --white:#fffaf0; }
+* { box-sizing:border-box; }
+body { min-height:100svh; margin:0; display:grid; grid-template-rows:auto 1fr auto; color:var(--ink); background:var(--paper); font-family:Inter,sans-serif; }
+a { color:inherit; }
+.skip-link { position:fixed; z-index:100; top:10px; left:10px; padding:10px 14px; color:#111; background:#fff; transform:translateY(-160%); }
+.skip-link:focus { transform:translateY(0); }
+.about-header { min-height:78px; padding:0 clamp(24px,8vw,150px); display:flex; align-items:center; justify-content:space-between; gap:28px; border-bottom:1px solid var(--ink); }
+.wordmark { font:800 26px/1 "Space Grotesk",sans-serif; letter-spacing:-.05em; text-decoration:none; }
+.wordmark span { color:var(--accent); }
+.back-link { color:var(--muted); font-size:13px; font-weight:800; text-decoration:none; }
+.back-link:hover,.back-link:focus-visible { color:var(--accent); }
+.about-page { width:min(1500px,100%); margin:0 auto; padding:clamp(80px,11vw,170px) clamp(24px,8vw,150px); display:grid; grid-template-columns:.8fr 1.2fr; column-gap:clamp(60px,10vw,160px); row-gap:0; align-items:start; }
+.about-page h1 { margin:0; font:400 clamp(76px,9vw,138px)/.9 "Libre Caslon Display",serif; letter-spacing:-.06em; }
+.about-content { max-width:760px; padding-top:10px; }
+.about-content p { margin:0 0 28px; color:var(--muted); font-size:clamp(19px,1.65vw,25px); line-height:1.55; }
+.about-content p:first-child { color:var(--ink); font-size:clamp(24px,2.35vw,35px); line-height:1.4; letter-spacing:-.025em; }
+.about-actions { margin-top:46px; display:flex; gap:14px; }
+.button { min-width:176px; padding:19px 25px; border:1px solid var(--ink); font-weight:800; text-align:center; text-decoration:none; transition:transform .2s; }
+.button:hover,.button:focus-visible { transform:translateY(-3px); }
+.button-solid { color:var(--white); border-color:var(--accent); background:var(--accent); }
+.button-outline { background:transparent; }
+.creative-work { grid-column:1/-1; margin-top:clamp(36px,5vw,72px); padding-top:clamp(36px,4vw,56px); border-top:1px solid var(--rule); }
+.creative-work>h2 { margin:0 0 38px; color:var(--accent); font-size:12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+.creative-grid { display:grid; grid-template-columns:1.65fr .85fr; gap:18px; }
+.photo-feature,.music-feature { min-height:410px; position:relative; overflow:hidden; border:1px solid var(--rule); border-radius:8px; text-decoration:none; }
+.photo-feature img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; transition:transform .5s ease; }
+.photo-feature:hover img { transform:scale(1.025); }
+.photo-feature>span { position:absolute; inset:auto 0 0; padding:26px 28px; display:flex; align-items:end; justify-content:space-between; gap:24px; color:#fff; background:linear-gradient(transparent,rgba(14,22,19,.82)); }
+.photo-feature strong { font:600 clamp(26px,3vw,40px)/1 "Space Grotesk",sans-serif; letter-spacing:-.035em; }
+.photo-feature small { font-size:12px; font-weight:800; }
+.music-feature { background:#171717; }
+.music-feature iframe { width:100%; height:410px; display:block; border:0; }
+footer { min-height:86px; padding:0 clamp(24px,8vw,150px); display:flex; align-items:center; justify-content:space-between; gap:24px; border-top:1px solid var(--rule); font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; }
+@media (max-width:760px) { .about-header { min-height:68px; } .about-page { grid-template-columns:1fr; column-gap:0; row-gap:48px; } .about-page h1 { font-size:68px; } .about-actions { flex-direction:column; } .creative-work { margin-top:12px; } .creative-grid { grid-template-columns:1fr; } .photo-feature,.music-feature { min-height:340px; } .music-feature iframe { height:410px; } footer { padding-block:28px; flex-direction:column; align-items:flex-start; } }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition-duration:.01ms!important; } }

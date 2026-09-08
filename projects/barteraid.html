@@ -1,223 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BarterAid | Production Web Application by Andy White</title>
-  <meta name="description" content="Explore BarterAid, a live cross-asset value discovery platform independently designed and built by Andy White.">
-  <meta name="author" content="Andy White">
-  <meta name="theme-color" content="#343a40">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BarterAid | Product Case Study by Andy White</title>
+  <meta name="description" content="How Andy White conceived, designed, engineered, and operates BarterAid, a live cross-asset value platform.">
+  <meta name="theme-color" content="#f3eee4">
   <link rel="canonical" href="https://andywhite.cv/projects/barteraid.html">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="BarterAid — Understand value beyond dollars">
-  <meta property="og:description" content="How Andy White designed and built a production cross-asset value platform from concept through operations.">
+  <meta property="og:title" content="BarterAid | Product Case Study by Andy White">
+  <meta property="og:description" content="A production platform that translates live market prices into comparisons people can understand.">
   <meta property="og:url" content="https://andywhite.cv/projects/barteraid.html">
-  <meta property="og:site_name" content="Andy White">
-  <meta property="og:image" content="https://andywhite.cv/assets/projects/barteraid/home-dark.webp">
-  <meta property="og:image:width" content="1440">
-  <meta property="og:image:height" content="1000">
-  <meta property="og:image:alt" content="BarterAid dashboard comparing live values across metals and cryptocurrencies">
+  <meta property="og:image" content="https://andywhite.cv/assets/projects/barteraid/homepage-desktop-dark.png">
+  <meta property="og:image:alt" content="BarterAid cross-asset value dashboard in dark mode">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="BarterAid | Production Web Application by Andy White">
-  <meta name="twitter:description" content="A production cross-asset value platform independently designed and built by Andy White.">
-  <meta name="twitter:image" content="https://andywhite.cv/assets/projects/barteraid/home-dark.webp">
-  <link rel="stylesheet" href="../styles.css">
-  <script src="../script.js" defer></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Inter:wght@400;600;700;800&amp;family=Libre+Caslon+Display&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="barteraid.css?v=3">
+  <script src="barteraid-gallery.js?v=3" defer></script>
 </head>
-<body class="case-study-page">
+<body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  <header>
-    <nav aria-label="Primary navigation">
-      <h1><a href="../index.html#hero" class="logo-link">Andy White</a></h1>
-      <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </button>
-      <ul class="nav-menu" id="primary-menu">
-        <li><a href="../index.html">Portfolio</a></li>
-        <li><a href="#why">Why</a></li>
-        <li><a href="#capabilities">Product</a></li>
-        <li><a href="#engineering">Engineering</a></li>
-        <li><a href="#production">Production</a></li>
-        <li><a href="#performance">Performance</a></li>
-      </ul>
-    </nav>
+  <header class="case-header">
+    <a class="wordmark" href="../index.html">Andy White<span>.</span></a>
+    <nav aria-label="Case study navigation"><a href="#product">Product</a><a href="#engineering">Engineering</a><a href="#production">Production</a></nav>
+    <a class="back-link" href="../index.html#projects">Back to portfolio</a>
   </header>
-
   <main id="main-content">
-    <section class="case-hero" id="overview">
-      <div class="particles" aria-hidden="true">
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle cream"></div><div class="particle cream"></div><div class="particle cream"></div>
+    <section class="case-hero">
+      <div class="hero-copy">
+        <p class="kicker">Independent product · Case study</p>
+        <h1>BarterAid</h1>
+        <p class="tagline">Understand value beyond dollars.</p>
+        <p class="lede">I independently conceived, designed, and built a production platform that translates live market prices into comparisons people can understand.</p>
+        <div class="hero-actions"><a class="button button-solid" href="https://barteraid.com/" target="_blank" rel="noopener noreferrer">Visit BarterAid ↗</a><a class="text-link" href="#engineering">See how I built it ↓</a></div>
       </div>
-      <div class="container case-hero-grid">
-        <div class="case-hero-copy">
-          <h1>BarterAid</h1>
-          <p class="case-tagline">Understand value beyond dollars.</p>
-          <p class="case-lede">BarterAid is a live cross-asset value platform that translates current cryptocurrency and metals prices into comparisons people can understand. Instead of stopping at a dollar quote, it shows what one asset buys in another, what familiar expenses represent across markets, and how asset values relate to income.</p>
-          <div class="case-actions">
-            <a class="btn case-primary-action" href="https://barteraid.com/" target="_blank" rel="noopener noreferrer">Visit BarterAid <span aria-hidden="true">↗</span></a>
-            <a class="case-text-link" href="../index.html#projects">Back to portfolio</a>
-          </div>
-        </div>
-        <figure class="case-hero-media">
-          <img src="../assets/projects/barteraid/home-dark.webp" width="1440" height="1000" alt="Dark-mode BarterAid homepage showing a gold comparison, value calculator, and live asset cards" fetchpriority="high" decoding="async">
-        </figure>
+      <figure class="hero-media screen-stage screen-stage-dark"><button class="screen-frame screenshot-trigger" type="button" data-gallery-index="0" aria-label="Open the BarterAid screenshot gallery at the dashboard"><span class="screen-chrome" aria-hidden="true"><i></i><i></i><i></i></span><img src="../assets/projects/barteraid/homepage-desktop-dark.png" width="1440" height="1000" alt="BarterAid dark-mode dashboard comparing gold, silver, and cryptocurrency values"></button></figure>
+      <dl class="project-facts"><div><dt>Role</dt><dd>Product owner &amp; full-stack engineer</dd></div><div><dt>Scope</dt><dd>Concept through production</dd></div><div><dt>Stack</dt><dd>Next.js · TypeScript · Prisma · Redis</dd></div></dl>
+    </section>
+    <section class="story-section" id="product">
+      <div class="story-heading"><p class="kicker">The idea</p><h2>What does value actually mean?</h2></div>
+      <div class="story-copy"><p>Most market tools answer one question: “What is this asset worth in dollars?” I built BarterAid to explore the more useful second question: “What does that value mean?”</p><p>One normalized pricing system connects metals and cryptocurrencies to cross-asset comparisons, conversions, purchasing-power benchmarks, rankings, income context, and portfolio tools.</p></div>
+      <figure class="wide-media screen-stage"><button class="screen-frame screenshot-trigger" type="button" data-gallery-index="1" aria-label="Open the BarterAid screenshot gallery at purchasing-power comparisons"><span class="screen-chrome" aria-hidden="true"><i></i><i></i><i></i></span><img src="../assets/projects/barteraid/insights-purchasing-power-desktop.png" width="1440" height="1000" alt="BarterAid purchasing-power comparisons for housing, transportation, and everyday expenses" loading="lazy"></button></figure>
+    </section>
+    <section class="product-section">
+      <div class="section-title"><h2>One model.<br>Many ways to understand value.</h2></div>
+      <div class="product-grid">
+        <figure class="product-feature product-feature-wide"><div class="screen-stage"><button class="screen-frame screenshot-trigger" type="button" data-gallery-index="2" aria-label="Open the BarterAid screenshot gallery at the conversion workspace"><span class="screen-chrome" aria-hidden="true"><i></i><i></i><i></i></span><img src="../assets/projects/barteraid/convert-desktop-clean.png" width="1440" height="1000" alt="BarterAid conversion workspace" loading="lazy"></button></div><figcaption><strong>Convert</strong><span>Translate any supported asset into another using the latest available price.</span></figcaption></figure>
+        <figure class="product-feature"><div class="screen-stage"><button class="screen-frame screenshot-trigger" type="button" data-gallery-index="3" aria-label="Open the BarterAid screenshot gallery at the asset comparison table"><span class="screen-chrome" aria-hidden="true"><i></i><i></i><i></i></span><img src="../assets/projects/barteraid/assets-desktop.png" width="1440" height="1000" alt="BarterAid asset comparison table" loading="lazy"></button></div><figcaption><strong>Explore</strong><span>See prices, units, equivalents, and purchasing-power context together.</span></figcaption></figure>
+        <figure class="product-feature"><div class="screen-stage"><button class="screen-frame screenshot-trigger" type="button" data-gallery-index="4" aria-label="Open the BarterAid screenshot gallery at the portfolio builder"><span class="screen-chrome" aria-hidden="true"><i></i><i></i><i></i></span><img src="../assets/projects/barteraid/insights-portfolio-builder-clean.png" width="1440" height="1000" alt="BarterAid portfolio builder" loading="lazy"></button></div><figcaption><strong>Track</strong><span>Combine holdings across asset classes into one live portfolio value.</span></figcaption></figure>
       </div>
     </section>
-
-    <section class="case-section" id="why">
-      <div class="container case-split">
-        <div class="case-copy-block">
-          <p class="section-label">The idea</p>
-          <h2>Why I built it</h2>
-          <p>Most market tools answer one question: “What is this asset worth in dollars?” I created BarterAid to explore a more useful second question: “What does that value mean?”</p>
-          <p>By placing metals and cryptocurrencies into one comparison system, BarterAid turns abstract prices into relative value and familiar purchasing-power context. Users can compare assets directly, express everyday expenses in different forms of value, and translate asset prices into concepts such as purchasing power and time spent earning them.</p>
-        </div>
-        <figure class="case-media-card">
-          <img src="../assets/projects/barteraid/purchasing-power.webp" width="1440" height="1000" alt="BarterAid purchasing-power benchmarks translating home, rent, car, and grocery costs into multiple assets" loading="lazy" decoding="async">
-          <figcaption>Familiar benchmarks make changing market values more concrete.</figcaption>
-        </figure>
-      </div>
+    <section class="engineering-section" id="engineering">
+      <div class="section-title section-title-light"><h2>Engineering for imperfect conditions.</h2><p>Live data is only useful when the system remains dependable around it.</p></div>
+      <ol class="system-flow"><li><span>01</span><strong>Ingest</strong><p>Combine market-data providers with different formats, cadences, and trading conditions.</p></li><li><span>02</span><strong>Normalize</strong><p>Translate every response into a shared, validated representation of value.</p></li><li><span>03</span><strong>Protect</strong><p>Coordinate caching, refreshes, fallbacks, and preserved last-known-good values.</p></li><li><span>04</span><strong>Reuse</strong><p>Power every comparison, insight, calculator, asset page, and portfolio from one model.</p></li></ol>
+      <figure class="engineering-media screen-stage screen-stage-dark"><button class="screen-frame screenshot-trigger" type="button" data-gallery-index="5" aria-label="Open the BarterAid screenshot gallery at value insights"><span class="screen-chrome" aria-hidden="true"><i></i><i></i><i></i></span><img src="../assets/projects/barteraid/insights-desktop-dark.png" width="1440" height="1000" alt="BarterAid purchasing-power and value insights in dark mode" loading="lazy"></button></figure>
     </section>
-
-    <section class="case-section case-section-alt" id="capabilities">
-      <div class="container">
-        <div class="capabilities-layout">
-          <div class="case-section-heading">
-            <p class="section-label">The product</p>
-            <h2>What users can do</h2>
-            <p>One shared value model supports a set of connected ways to understand and use live prices.</p>
-          </div>
-          <ul class="capability-list">
-            <li><p><strong>Compare</strong> live asset prices, daily changes, market status, and relative value.</p></li>
-            <li><p><strong>Convert</strong> custom amounts between assets and units.</p></li>
-            <li><p><strong>Explore</strong> purchasing-power benchmarks, asset ratios, rankings, and time-to-earn estimates.</p></li>
-            <li><p><strong>Build</strong> a browser-persisted portfolio and track its combined live value.</p></li>
-            <li><p><strong>Explore</strong> dedicated asset experiences with two-way USD calculations, pricing, cross-asset equivalents, and purchasing-power context.</p></li>
-          </ul>
-        </div>
-        <div class="product-media-grid">
-          <figure class="case-media-card product-media-wide">
-            <img src="../assets/projects/barteraid/convert.webp" width="1440" height="1000" alt="Light-mode BarterAid Convert workspace showing a USD-to-gold conversion and reusable conversion cards" loading="lazy" decoding="async">
-            <figcaption>The conversion workspace supports one-off calculations, saved conversion cards, asset units, and responsive mobile use.</figcaption>
-          </figure>
-          <figure class="case-media-card">
-            <img src="../assets/projects/barteraid/assets.webp" width="1440" height="1000" alt="BarterAid Gold page showing a two-way USD value calculator, live price, selectable units, and cross-asset equivalents" loading="lazy" decoding="async">
-            <figcaption>Dedicated asset pages combine live prices, two-way USD calculations, and cross-asset context.</figcaption>
-          </figure>
-          <figure class="case-media-card">
-            <img src="../assets/projects/barteraid/portfolio.webp" width="1440" height="1000" alt="BarterAid portfolio builder tracking the combined live value of metals and cryptocurrency holdings" loading="lazy" decoding="async">
-            <figcaption>A browser-persisted portfolio combines holdings into one live value.</figcaption>
-          </figure>
-        </div>
-      </div>
+    <section class="production-section" id="production">
+      <div class="section-title"><h2>Built to operate,<br>not just demonstrate.</h2></div>
+      <div class="production-grid"><article><h3>Reliability</h3><p>Market-aware caching, coordinated refreshes, validation, and layered recovery preserve a useful experience when providers fail.</p></article><article><h3>Security</h3><p>Authenticated administration, request validation, abuse controls, and restrictive browser policies protect operational surfaces.</p></article><article><h3>Observability</h3><p>An authenticated dashboard surfaces provider health, cache behavior, scheduled processing, telemetry, and operational events.</p></article><article><h3>Quality</h3><p>Automated tests cover pricing, recovery, caching, authentication, telemetry, feature gating, persistence, and public behavior.</p></article></div>
+      <dl class="technology-list"><div><dt>Application</dt><dd>Next.js · React · TypeScript · Tailwind CSS · Zustand</dd></div><div><dt>Data &amp; infrastructure</dt><dd>Prisma · PostgreSQL · Supabase · Redis · Vercel · Cloudflare</dd></div><div><dt>Quality</dt><dd>Vitest · Accessibility · Performance · Observability</dd></div></dl>
     </section>
-
-    <section class="case-section engineering-section" id="engineering">
-      <div class="container">
-        <div class="engineering-overview">
-          <div class="case-section-heading engineering-heading">
-            <p class="section-label">System design</p>
-            <h2>Engineering the platform</h2>
-            <p>I conceived, designed, and built BarterAid independently, owning the complete product lifecycle from product definition and UX through architecture, implementation, testing, deployment, and production operations.</p>
-          </div>
-          <h3 id="engineering-pipeline-title" class="visually-hidden">BarterAid data pipeline</h3>
-          <ol class="engineering-pipeline">
-            <li><span>Sources</span><strong>Market-data APIs</strong><small>Different formats and market conditions</small></li>
-            <li><span>Model</span><strong>Normalize &amp; validate</strong><small>One consistent representation of value</small></li>
-            <li><span>Reliability</span><strong>Cache &amp; recover</strong><small>Coordinated refreshes and preserved values</small></li>
-            <li><span>Product</span><strong>Connected experiences</strong><small>Conversions, insights, assets, and portfolios</small></li>
-          </ol>
-        </div>
-        <div class="engineering-story">
-          <div class="engineering-principles">
-            <article>
-              <h3>Shared pricing model</h3>
-              <p>Market-data APIs return different formats and operate under different market conditions. I normalize their responses into a shared pricing model used across conversions, ratios, purchasing-power experiences, asset pages, and portfolio calculations.</p>
-            </article>
-            <article>
-              <h3>Resilient by default</h3>
-              <p>The application uses market-aware caching, coordinated refreshes, data validation, and layered recovery to remain useful when external data is incomplete or temporarily unavailable. Previously validated values can be preserved rather than allowing partial upstream responses to degrade the application.</p>
-            </article>
-            <article>
-              <h3>Market-aware behavior</h3>
-              <p>Building BarterAid required deciding not only how each feature should work, but how the application should behave when external data is incomplete, caches expire, market sessions change, or supporting infrastructure becomes temporarily unavailable.</p>
-            </article>
-          </div>
-          <figure class="engineering-media">
-            <img src="../assets/projects/barteraid/insights-dark.webp" width="1440" height="1000" alt="Dark-mode BarterAid Insights page showing purchasing-power benchmarks organized by asset" loading="lazy" decoding="async">
-            <figcaption>Purchasing-power benchmarks reuse the same normalized pricing model across every selected asset.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="case-section case-section-alt" id="production">
-      <div class="container production-layout">
-        <div class="case-section-heading">
-          <p class="section-label">Operational quality</p>
-          <h2>Built for production</h2>
-          <p>BarterAid is a live, actively maintained production application, with reliability, security, performance, testing, and monitoring considered throughout its development and operation.</p>
-        </div>
-        <dl class="production-list">
-          <div><dt>Security</dt><dd>Administrative and scheduled operations use layered protections including authenticated sessions, request validation, abuse controls, and restrictive browser security policies.</dd></div>
-          <div><dt>Observability</dt><dd>An authenticated operations dashboard provides visibility into data-source health, cache behavior, scheduled processing, telemetry, and operational events.</dd></div>
-          <div><dt>Performance</dt><dd>Server-rendered initial data, shared client state, caching, deferred work, and coordinated refreshes reduce unnecessary network and computation costs.</dd></div>
-          <div><dt>Accessibility</dt><dd>Semantic structure, keyboard-accessible controls, visible focus states, screen-reader support, reduced-motion handling, and responsive layouts are incorporated throughout the interface.</dd></div>
-          <div><dt>Testing</dt><dd>A comprehensive automated test suite covers pricing and recovery behavior, caching, authentication, telemetry, feature gating, persisted state, and public application behavior.</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="case-section barteraid-performance-section" id="performance">
-      <div class="container barteraid-performance-layout">
-        <div class="case-section-heading">
-          <p class="section-label">Measured performance</p>
-          <h2>Fast in the lab. Fast for real users.</h2>
-          <p>BarterAid has achieved 100 across all four desktop Lighthouse categories and a 100 Vercel Real Experience Score.</p>
-        </div>
-        <dl class="production-list barteraid-performance-list">
-          <div><dt>Lighthouse</dt><dd>Performance, Accessibility, Best Practices, and SEO each reached a perfect 100 in desktop testing.</dd></div>
-          <div><dt>Real experience</dt><dd>A 100 Vercel Real Experience Score confirms that the production experience is fast for actual users, not only under lab conditions.</dd></div>
-          <div><dt>Architecture</dt><dd>Server-rendered initial data, caching, coordinated refreshes, and deferred work keep the application responsive without sacrificing live functionality.</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="case-section technology-section" id="technology">
-      <div class="container case-split technology-layout">
-        <div>
-          <p class="section-label">Technology</p>
-          <h2>A focused production stack</h2>
-        </div>
-        <dl class="technology-list">
-          <div><dt>Primary</dt><dd>Next.js · React · TypeScript · Tailwind CSS · Zustand · Redis · PostgreSQL</dd></div>
-          <div><dt>Infrastructure &amp; support</dt><dd>Supabase · Prisma · Vercel · Cloudflare · Vitest</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <div class="case-closing">
-      <div class="container case-closing-inner">
-        <div class="case-closing-logo" aria-hidden="true">
-          <img src="../assets/projects/barteraid/mark.svg" width="100" height="100" alt="">
-        </div>
-        <div class="case-closing-copy">
-          <p class="section-label">Explore the live product</p>
-          <h2>Understand value beyond dollars.</h2>
-          <p>Compare gold, silver, Bitcoin, and other assets through live value comparisons and purchasing-power insights.</p>
-        </div>
-        <a class="btn case-primary-action" href="https://barteraid.com/" target="_blank" rel="noopener noreferrer">Explore BarterAid <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
+    <section class="case-closing"><img src="../assets/projects/barteraid/mark.svg" width="82" height="82" alt="" aria-hidden="true"><h2>See BarterAid in production.</h2><p>Explore live comparisons, conversions, purchasing-power insights, and portfolio tools.</p><a class="button button-solid" href="https://barteraid.com/" target="_blank" rel="noopener noreferrer">Visit BarterAid ↗</a></section>
   </main>
-
-  <footer>
-    <div class="container"><p>&copy; 2026 ComfyClicks</p></div>
-  </footer>
+  <dialog class="gallery-modal" id="barteraid-gallery" aria-labelledby="gallery-title">
+    <header class="gallery-header"><div><p>BarterAid product gallery</p><h2 id="gallery-title">Explore the interface</h2></div><button class="gallery-close" type="button">Close</button></header>
+    <div class="gallery-stage">
+      <figure class="gallery-item is-active"><img src="../assets/projects/barteraid/homepage-desktop-dark.png" width="1440" height="1000" alt="BarterAid dashboard in dark mode"><figcaption>Dashboard</figcaption></figure>
+      <figure class="gallery-item" hidden><img src="../assets/projects/barteraid/insights-purchasing-power-desktop.png" width="1440" height="1000" alt="BarterAid purchasing-power comparisons"><figcaption>Purchasing power</figcaption></figure>
+      <figure class="gallery-item" hidden><img src="../assets/projects/barteraid/convert-desktop-clean.png" width="1440" height="1000" alt="BarterAid conversion workspace"><figcaption>Convert</figcaption></figure>
+      <figure class="gallery-item" hidden><img src="../assets/projects/barteraid/assets-desktop.png" width="1440" height="1000" alt="BarterAid asset comparison table"><figcaption>Assets</figcaption></figure>
+      <figure class="gallery-item" hidden><img src="../assets/projects/barteraid/insights-portfolio-builder-clean.png" width="1440" height="1000" alt="BarterAid portfolio builder"><figcaption>Portfolio</figcaption></figure>
+      <figure class="gallery-item" hidden><img src="../assets/projects/barteraid/insights-desktop-dark.png" width="1440" height="1000" alt="BarterAid purchasing-power and value insights in dark mode"><figcaption>Insights</figcaption></figure>
+    </div>
+    <nav class="gallery-controls" aria-label="Screenshot carousel controls"><button class="gallery-previous" type="button">← Previous</button><span class="gallery-counter" aria-live="polite">1 / 6</span><button class="gallery-next" type="button">Next →</button></nav>
+  </dialog>
+  <footer><a href="../about.html">About</a><span>© 2026 Andy White</span></footer>
 </body>
 </html>
