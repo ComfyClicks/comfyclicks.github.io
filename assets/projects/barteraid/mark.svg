@@ -1,6 +1,18 @@
 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="35" cy="35" r="22" stroke="#F7931A" stroke-width="4" opacity="0.9"/>
-  <circle cx="65" cy="35" r="22" stroke="#627EEA" stroke-width="4" opacity="0.9"/>
-  <circle cx="35" cy="65" r="22" stroke="#D4AF37" stroke-width="4" opacity="0.9"/>
-  <circle cx="65" cy="65" r="22" stroke="#C0C0C0" stroke-width="4" opacity="0.9"/>
+  <defs>
+    <clipPath id="top-crossing"><circle cx="50" cy="20" r="4.5"/></clipPath>
+    <clipPath id="right-crossing"><circle cx="80" cy="50" r="4.5"/></clipPath>
+    <clipPath id="bottom-crossing"><circle cx="50" cy="80" r="4.5"/></clipPath>
+    <clipPath id="left-crossing"><circle cx="20" cy="50" r="4.5"/></clipPath>
+  </defs>
+
+  <circle cx="35" cy="35" r="21.2132034356" stroke="#F7931A" stroke-width="4"/>
+  <circle cx="65" cy="35" r="21.2132034356" stroke="#627EEA" stroke-width="4"/>
+  <circle cx="65" cy="65" r="21.2132034356" stroke="#C0C0C0" stroke-width="4"/>
+  <circle cx="35" cy="65" r="21.2132034356" stroke="#D4AF37" stroke-width="4"/>
+
+  <circle cx="35" cy="35" r="21.2132034356" stroke="#F7931A" stroke-width="4" clip-path="url(#top-crossing)"/>
+  <circle cx="65" cy="35" r="21.2132034356" stroke="#627EEA" stroke-width="4" clip-path="url(#right-crossing)"/>
+  <circle cx="65" cy="65" r="21.2132034356" stroke="#C0C0C0" stroke-width="4" clip-path="url(#bottom-crossing)"/>
+  <circle cx="35" cy="65" r="21.2132034356" stroke="#D4AF37" stroke-width="4" clip-path="url(#left-crossing)"/>
 </svg>
