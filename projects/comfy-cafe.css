@@ -29,9 +29,8 @@ a { color:inherit; text-underline-offset:5px; }
 .screen-stage { margin:0; padding:clamp(16px,2.6vw,36px); display:grid; place-items:center; background:#ddd5c8; }
 .screen-stage-warm { background:#d8cec0; }
 .screen-stage-dark { background:#18241f; }
-.screen-frame { width:100%; overflow:hidden; border:1px solid rgba(20,32,28,.35); border-radius:6px; background:#fff; box-shadow:0 20px 55px rgba(22,35,31,.18); }
-.screen-chrome { height:23px; padding-left:11px; display:flex; align-items:center; gap:6px; background:#ebe9e5; border-bottom:1px solid #d8d4cd; }
-.screen-chrome i { width:7px; height:7px; border-radius:50%; background:#b8b3aa; }
+.screen-frame { width:100%; overflow:hidden; border:0; border-radius:4px; background:#fff; box-shadow:0 12px 32px rgba(22,35,31,.14); }
+.screen-chrome { display:none; }
 .screen-frame img { width:100%; height:auto; }
 .hero-media { overflow:hidden; border:1px solid var(--rule); border-radius:8px; box-shadow:0 24px 70px rgba(28,42,37,.14); }
 
