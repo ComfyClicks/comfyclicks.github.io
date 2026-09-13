@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Docketeer 18 | Open-Source Case Study by Andy White</title>
-  <meta name="description" content="How Andy White and a four-engineer team expanded Docketeer 18 from aggregate vulnerability counts into an interactive CVE investigation and scan-history workflow.">
+  <meta name="description" content="How Andy White expanded Docketeer 18 from aggregate vulnerability counts into an interactive CVE investigation and scan-history workflow.">
   <meta name="theme-color" content="#081521">
   <link rel="canonical" href="https://andywhite.cv/projects/docketeer.html">
   <meta property="og:type" content="article">
@@ -35,7 +35,7 @@
         <p class="kicker">Open-source product · Docketeer 18.0</p>
         <h1>Docketeer</h1>
         <p class="tagline">From severity counts to CVE investigation.</p>
-        <p class="lede">I helped a four-engineer team expand Docketeer’s existing Docker image scanner into an interactive vulnerability-analysis experience—and carry detailed findings through the full application stack.</p>
+        <p class="lede">I transformed Docketeer’s existing Docker image scanner from a high-level severity counter into a comprehensive vulnerability-analysis experience, carrying detailed findings across the backend, application state, persistence layer, and interface.</p>
         <div class="hero-actions"><a class="button button-solid" href="https://docketeer.io" target="_blank" rel="noopener noreferrer">Visit Docketeer ↗</a><a class="text-link" href="https://medium.com/@docketeer/announcing-docketeer-18-0-a-whale-of-an-improvement-67282fbbbe61" target="_blank" rel="noopener noreferrer">Read the press release ↗</a></div>
       </div>
       <figure class="hero-media screen-stage screen-stage-dark"><button class="screen-frame screenshot-trigger" type="button" data-gallery-index="0" aria-label="Open the Docketeer screenshot gallery at the vulnerability overview"><span class="screen-chrome" aria-hidden="true"><i></i><i></i><i></i></span><img src="../assets/projects/docketeer/vulnerability-overview.webp" width="1456" height="888" alt="Docketeer image vulnerability dashboard showing aggregate totals and six severity levels"></button></figure>
@@ -45,7 +45,7 @@
       <div class="story-heading"><p class="kicker">The opportunity</p><h2>The scanner knew more than the interface showed.</h2></div>
       <div class="story-copy">
         <p>Docketeer 17 already used Grype to scan Docker images. It parsed package names, installed versions, vulnerability IDs, and severities—but then reduced those records to four aggregate counts and discarded the detail.</p>
-        <p>Our release team saw a more useful product hiding in that data: preserve every finding, then let developers move from a portfolio-level signal to the affected image, package, and individual CVE.</p>
+        <p>I saw a more useful product hiding in that data: preserve every finding, then let developers move from a portfolio-level signal to the affected image, package, and individual CVE.</p>
       </div>
       <div class="before-after" aria-label="Docketeer vulnerability experience before and after version 18">
         <article><p class="comparison-label">Before · Docketeer 17</p><h3>See the count</h3><ul><li>Four severity categories</li><li>Aggregate totals only</li><li>Detailed Grype rows discarded</li><li>No saved scan history</li></ul></article>
@@ -79,7 +79,7 @@
     <section class="release-section" id="release">
       <div class="section-title"><p class="kicker">Working in the open</p><h2>An inherited codebase.<br>A real release handoff.</h2></div>
       <div class="release-layout">
-        <div class="release-copy"><p>We developed in parallel across feature branches, integrated our work through a shared development branch, and delivered Docketeer 18 to the Open Source Labs project.</p><p>The work touched backend controllers, API routes, cache middleware, Redux state, React and TypeScript components, MongoDB persistence, Docker configuration, tests, and release documentation. Later Docketeer teams inherited and continued evolving the architecture.</p></div>
+        <div class="release-copy"><p>I developed and integrated Docketeer 18 within an established open-source codebase, then delivered the release to the Open Source Labs project.</p><p>My work touched backend controllers, API routes, cache middleware, Redux state, React and TypeScript components, MongoDB persistence, Docker configuration, tests, and release documentation. Later Docketeer contributors inherited and continued evolving the architecture.</p></div>
       </div>
       <dl class="technology-list"><div><dt>Application</dt><dd>TypeScript · React · Redux Toolkit · Node.js · Express · Vite</dd></div><div><dt>Data &amp; security</dt><dd>Grype · Redis · MongoDB · Mongoose · NVD</dd></div><div><dt>Interface</dt><dd>Chart.js · Material UI · Sass · React Select</dd></div><div><dt>Delivery</dt><dd>Docker · Docker Compose · Git · GitHub pull requests</dd></div></dl>
     </section>
