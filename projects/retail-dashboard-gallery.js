@@ -9,8 +9,16 @@ let retailGalleryIndex = 0;
 let lastRetailGalleryTrigger = null;
 let retailTouchStartX = 0;
 
+function loadRetailGalleryImage(item) {
+    const image = item?.querySelector('img[data-src]');
+    if (!image) return;
+    image.src = image.dataset.src;
+    image.removeAttribute('data-src');
+}
+
 function showRetailGalleryItem(index) {
     retailGalleryIndex = (index + retailGalleryItems.length) % retailGalleryItems.length;
+    loadRetailGalleryImage(retailGalleryItems[retailGalleryIndex]);
     retailGalleryItems.forEach((item, itemIndex) => {
         const isActive = itemIndex === retailGalleryIndex;
         item.classList.toggle('is-active', isActive);
@@ -59,3 +67,14 @@ retailGallery?.addEventListener('click', (event) => {
 });
 
 retailGallery?.addEventListener('close', () => lastRetailGalleryTrigger?.focus());
+
+const dashboardEmbed = document.querySelector('.dashboard-embed[data-dashboard-src]');
+const dashboardLoadButton = dashboardEmbed?.querySelector('.dashboard-load-button');
+
+dashboardLoadButton?.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = dashboardEmbed.dataset.dashboardSrc;
+    iframe.title = 'Interactive Retail Dashboard workbook';
+    iframe.allowFullscreen = true;
+    dashboardEmbed.replaceChildren(iframe);
+});
