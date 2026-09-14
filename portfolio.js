@@ -19,3 +19,33 @@ menuButton?.addEventListener('click', () => {
 
 navigation?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 window.addEventListener('resize', () => { if (window.innerWidth > 980) closeMenu(); });
+
+const contactForm = document.querySelector('#contact-form');
+const contactStatus = document.querySelector('#contact-status');
+
+contactForm?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  contactStatus.classList.remove('is-error');
+  contactStatus.textContent = 'Sending…';
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: { Accept: 'application/json' },
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Unable to send your message.');
+
+    contactForm.reset();
+    window.turnstile?.reset();
+    contactStatus.textContent = 'Thanks — your message has been sent.';
+  } catch (error) {
+    contactStatus.classList.add('is-error');
+    contactStatus.textContent = error.message || 'Unable to send your message. Please try again.';
+  } finally {
+    submitButton.disabled = false;
+  }
+});

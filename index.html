@@ -55,6 +55,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Inter:wght@400;500;600;700;800&amp;family=Libre+Caslon+Display&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="portfolio.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="portfolio.js" defer></script>
 </head>
 <body>
@@ -141,7 +142,23 @@
       </div>
       <a class="photo-link" href="https://instagram.com/ComfyClicks" target="_blank" rel="noopener noreferrer">See more photography ↗</a>
     </section>
-    <section class="closer" id="contact"><h2>Let’s connect.</h2><p>Connect with me on LinkedIn or explore more of my work on GitHub.</p><div class="actions"><a class="button button-solid" href="https://www.linkedin.com/in/andywhite5/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a class="button button-light" href="https://github.com/comfyclicks" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></section>
+    <section class="closer" id="contact">
+      <div class="contact-intro"><p class="eyebrow">Get in touch</p><h2>Let’s connect.</h2><p>Have a role, project, or idea in mind? Send me a note and I’ll get back to you.</p></div>
+      <form class="contact-form" id="contact-form" action="/api/contact" method="post">
+        <div class="contact-fields">
+          <label><span>Name</span><input type="text" name="name" autocomplete="name" maxlength="100" required></label>
+          <label><span>Email</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>
+          <label class="contact-message"><span>Message</span><textarea name="message" rows="6" maxlength="5000" required></textarea></label>
+        </div>
+        <label class="contact-honeypot" aria-hidden="true">Company website<input type="url" name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="contact-submit">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAE0Ggj4gbh1R_qEI" data-theme="dark"></div>
+          <button class="button button-solid" type="submit">Send message</button>
+        </div>
+        <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
+      </form>
+      <div class="contact-links"><a href="https://www.linkedin.com/in/andywhite5/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/comfyclicks" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+    </section>
   </main>
   <footer><a href="about.html">About</a><span>© 2026 Andy White</span></footer>
 </body>
