@@ -24,8 +24,8 @@ button { font:inherit; }
 .button:hover,.button:focus-visible { transform:translateY(-3px); }
 .button-solid { color:var(--white); border-color:var(--accent); background:var(--accent); }
 .button-outline { background:transparent; }
-.social-link { display:inline-flex; align-items:center; justify-content:center; gap:9px; }
-.social-link svg { width:17px; height:17px; flex:0 0 auto; fill:currentColor; }
+.social-link { display:inline-flex; align-items:center; justify-content:center; gap:7px; }
+.social-link svg { display:block; width:14px; height:14px; flex:0 0 14px; fill:currentColor; }
 .hero-facts { margin-top:68px; display:flex; justify-content:center; color:#747c78; font-size:12px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
 .hero-facts span { padding:0 30px; border-right:1px solid var(--rule); }
 .hero-facts span:last-child { border:0; }
