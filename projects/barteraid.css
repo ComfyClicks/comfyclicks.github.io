@@ -1,4 +1,4 @@
-:root { --paper:#f7f8fa; --paper-deep:#e9edf2; --ink:#111827; --muted:#657083; --rule:#cfd6df; --accent:#946900; --dark:#111827; --white:#fffdf7; --max-width:1420px; }
+:root { --paper:#f7f8fa; --paper-deep:#e9edf2; --ink:#111827; --muted:#566273; --rule:#cfd6df; --accent:#7d5900; --dark:#111827; --white:#fffdf7; --max-width:1420px; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; scroll-padding-top:78px; }
 body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,sans-serif; }
@@ -37,15 +37,15 @@ a { color:inherit; text-underline-offset:5px; }
 .screenshot-trigger:hover::after,.screenshot-trigger:focus-visible::after { opacity:1; transform:translateY(0); }
 .screen-chrome { display:none; }
 .screen-frame img { width:100%; height:auto; object-fit:contain; }
-.hero-media { align-self:center; overflow:hidden; border:1px solid #263247; border-radius:12px; box-shadow:0 24px 70px rgba(17,24,39,.16); }
+.hero-media { width:100%; max-width:760px; align-self:center; justify-self:end; overflow:hidden; border:1px solid #263247; border-radius:12px; box-shadow:0 24px 70px rgba(17,24,39,.16); }
 .story-section { padding:clamp(96px,11vw,170px) clamp(24px,6vw,96px); display:grid; grid-template-columns:1fr 1fr; gap:50px 80px; }
 .story-heading h2,.section-title h2 { margin:16px 0 0; font:400 clamp(58px,7vw,108px)/.95 "Libre Caslon Display",serif; letter-spacing:-.055em; }
 .story-copy { align-self:end; max-width:650px; color:var(--muted); font-size:clamp(17px,1.6vw,21px); line-height:1.65; }
 .story-copy p:first-child { margin-top:0; }
-.wide-media { grid-column:1/-1; margin-top:40px; overflow:hidden; border:1px solid var(--rule); border-radius:12px; }
+.wide-media { width:100%; max-width:1120px; grid-column:1/-1; margin:40px auto 0; overflow:hidden; border:1px solid var(--rule); border-radius:12px; }
 .product-section,.production-section { padding:clamp(96px,10vw,150px) clamp(24px,6vw,96px); background:#e9edf2; }
 .section-title { max-width:var(--max-width); margin:0 auto clamp(50px,7vw,90px); }
-.product-grid { max-width:var(--max-width); margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+.product-grid { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:26px; }
 .product-feature { margin:0; overflow:hidden; border:1px solid var(--rule); border-radius:10px; background:var(--paper); }
 .product-feature-wide { grid-column:1/-1; }
 .product-feature .screen-stage { padding:24px; }
@@ -60,7 +60,7 @@ a { color:inherit; text-underline-offset:5px; }
 .system-flow span { color:#f2c14e; font:500 11px "DM Mono",monospace; }
 .system-flow strong { display:block; margin:58px 0 18px; font:600 27px "Space Grotesk",sans-serif; }
 .system-flow p { margin:0; color:#cbd3df; font-size:14px; line-height:1.6; }
-.engineering-media { max-width:var(--max-width); margin:0 auto; overflow:hidden; border-radius:12px; border:1px solid rgba(255,255,255,.24); }
+.engineering-media { max-width:1120px; margin:0 auto; overflow:hidden; border-radius:12px; border:1px solid rgba(255,255,255,.24); }
 .production-grid { max-width:var(--max-width); margin:0 auto 74px; display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid var(--rule); border-left:1px solid var(--rule); }
 .production-grid article { padding:42px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); }
 .production-grid h3 { margin:0 0 18px; font:600 28px "Space Grotesk",sans-serif; }

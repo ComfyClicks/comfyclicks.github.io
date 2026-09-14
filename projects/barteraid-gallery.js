@@ -10,8 +10,16 @@ let currentGalleryIndex = 0;
 let lastGalleryTrigger = null;
 let touchStartX = 0;
 
+function loadGalleryImage(item) {
+  const image = item?.querySelector('img[data-src]');
+  if (!image) return;
+  image.src = image.dataset.src;
+  image.removeAttribute('data-src');
+}
+
 function showGalleryItem(index) {
   currentGalleryIndex = (index + galleryItems.length) % galleryItems.length;
+  loadGalleryImage(galleryItems[currentGalleryIndex]);
   galleryItems.forEach((item, itemIndex) => {
     const isActive = itemIndex === currentGalleryIndex;
     item.classList.toggle('is-active', isActive);
