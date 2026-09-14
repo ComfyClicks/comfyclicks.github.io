@@ -31,7 +31,8 @@ button { font:inherit; }
 .back-link { justify-self:end; }
 
 .kicker { margin:0; color:var(--accent); font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-.case-hero { min-height:calc(100svh - 78px); padding:clamp(76px,8vw,124px) clamp(24px,6vw,96px); display:grid; grid-template-columns:.82fr 1.18fr; gap:clamp(40px,5vw,76px); border-bottom:1px solid var(--ink); }
+.case-hero { min-height:calc(100svh - 78px); padding:clamp(76px,8vw,124px) clamp(24px,6vw,96px); display:grid; align-items:center; border-bottom:1px solid var(--ink); }
+.case-hero-inner { width:100%; max-width:1600px; margin:0 auto; display:grid; grid-template-columns:.82fr 1.18fr; gap:clamp(40px,5vw,76px); }
 .hero-copy { align-self:center; }
 .hero-copy h1 { max-width:720px; margin:16px 0 18px; font:400 clamp(64px,7.6vw,122px)/.91 "Libre Caslon Display",serif; letter-spacing:-.06em; }
 .tagline { max-width:620px; margin:0 0 30px; color:var(--accent); font-size:clamp(21px,2vw,30px); font-weight:750; line-height:1.25; }
@@ -101,7 +102,7 @@ footer a:hover,footer a:focus-visible { color:var(--accent); }
 @media (max-width:980px) {
   .case-header { grid-template-columns:1fr auto; }
   .case-header nav { display:none; }
-  .case-hero,.story-section { grid-template-columns:1fr; }
+  .case-hero-inner,.story-section { grid-template-columns:1fr; }
   .case-hero { min-height:auto; }
   .section-title-light { grid-template-columns:1fr; }
   .section-title-light h2,.section-title-light>p:last-child { grid-column:1; grid-row:auto; }
