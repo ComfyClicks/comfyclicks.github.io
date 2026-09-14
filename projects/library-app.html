@@ -1,134 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library App | Vanilla JavaScript Project by Andy White</title>
-  <meta name="description" content="Explore Library App, a responsive personal collection manager built by Andy White with vanilla JavaScript, semantic HTML, accessible dialogs, and persistent browser state.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library App | Vanilla JavaScript Case Study by Andy White</title>
+  <meta name="description" content="Explore Library App, a responsive personal collection manager built by Andy White with vanilla JavaScript, accessible dialogs, and persistent browser state.">
   <meta name="author" content="Andy White">
-  <meta name="theme-color" content="#343a40">
+  <meta name="theme-color" content="#071f3a">
   <link rel="canonical" href="https://andywhite.cv/projects/library-app.html">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Library App | Vanilla JavaScript Project">
-  <meta property="og:description" content="A focused personal library experience with responsive book cards, accessible dialogs, and browser-persisted state.">
-  <meta property="og:url" content="https://andywhite.cv/projects/library-app.html">
-  <meta property="og:site_name" content="Andy White">
-  <meta property="og:image" content="https://andywhite.cv/assets/projects/library-app/home.webp">
-  <meta property="og:image:width" content="1440">
-  <meta property="og:image:height" content="1000">
-  <meta property="og:image:alt" content="Library App displaying a responsive collection of six book cards">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Library App | Vanilla JavaScript Project">
-  <meta name="twitter:description" content="A focused personal library experience built with vanilla JavaScript, HTML, and CSS.">
-  <meta name="twitter:image" content="https://andywhite.cv/assets/projects/library-app/home.webp">
+  <meta property="og:type" content="article"><meta property="og:title" content="Library App | Vanilla JavaScript Case Study"><meta property="og:description" content="A focused personal library experience with responsive book cards, accessible dialogs, and browser-persisted state."><meta property="og:url" content="https://andywhite.cv/projects/library-app.html"><meta property="og:site_name" content="Andy White"><meta property="og:image" content="https://andywhite.cv/assets/projects/library-app/home.webp"><meta property="og:image:width" content="1440"><meta property="og:image:height" content="1000"><meta property="og:image:alt" content="Library App displaying a responsive collection of six book cards"><meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css">
-  <script src="../script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="../assets/projects/library-app/home-840.webp" imagesrcset="../assets/projects/library-app/home-480.webp 480w, ../assets/projects/library-app/home-840.webp 840w, ../assets/projects/library-app/home-1200.webp 1200w" imagesizes="(max-width: 980px) calc(100vw - 72px), min(760px, calc(55vw - 110px))" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Inter:wght@400;600;700;800&amp;family=Libre+Caslon+Display&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="library-app.css?v=1">
 </head>
-<body class="case-study-page library-case-study">
+<body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  <header>
-    <nav aria-label="Primary navigation">
-      <h1><a href="../index.html#top" class="logo-link">Andy White</a></h1>
-      <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </button>
-      <ul class="nav-menu" id="primary-menu">
-        <li><a href="../index.html">Portfolio</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#quality">Quality</a></li>
-        <li><a href="#technology">Technology</a></li>
-      </ul>
-    </nav>
-  </header>
-
+  <header class="case-header"><a class="wordmark" href="../index.html">Andy White<span>.</span></a><nav aria-label="Case study navigation"><a href="#experience">Experience</a><a href="#quality">Quality</a><a href="#technology">Technology</a></nav><a class="back-link" href="../index.html#projects">Back to portfolio</a></header>
   <main id="main-content">
-    <section class="case-hero library-hero" id="overview">
-      <div class="container case-hero-grid">
-        <div class="case-hero-copy">
-          <p class="case-kicker">Vanilla JavaScript project</p>
-          <h1>Library App</h1>
-          <p class="case-tagline">A simple, persistent home for a personal reading list.</p>
-          <p class="case-lede">Library App is a focused browser-based collection manager built with HTML, CSS, and vanilla JavaScript. A responsive card layout keeps each book easy to scan, while native dialogs support adding and removing titles without interrupting the experience.</p>
-          <div class="case-actions">
-            <a class="btn case-primary-action" href="https://www.andywhite.cv/Library-App/" target="_blank" rel="noopener noreferrer">Visit Library App <span aria-hidden="true">↗</span></a>
-            <a class="case-text-link" href="https://github.com/ComfyClicks/Library-App" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>
-            <a class="case-text-link" href="../index.html#projects">Back to portfolio</a>
-          </div>
-        </div>
-        <figure class="case-hero-media library-hero-media">
-          <img src="../assets/projects/library-app/home.webp" width="1440" height="1000" alt="Library App displaying six books in a responsive card layout" fetchpriority="high" decoding="async">
-        </figure>
-      </div>
+    <section class="case-hero" id="overview"><div class="case-hero-inner">
+      <div class="hero-copy"><p class="kicker">Vanilla JavaScript project</p><h1>Library App</h1><p class="tagline">A simple, persistent home for a personal reading list.</p><p class="lede">A focused browser-based collection manager built with semantic HTML, responsive CSS, and vanilla JavaScript. Readers can add books, update reading status, and maintain a personal collection without creating an account.</p><div class="hero-actions"><a class="button button-solid" href="https://www.andywhite.cv/Library-App/" target="_blank" rel="noopener noreferrer">Visit Library App ↗</a><a class="text-link" href="https://github.com/ComfyClicks/Library-App" target="_blank" rel="noopener noreferrer">View source ↗</a></div></div>
+      <figure class="hero-media screen-stage"><div class="screen-frame"><img src="../assets/projects/library-app/home-840.webp" srcset="../assets/projects/library-app/home-480.webp 480w, ../assets/projects/library-app/home-840.webp 840w, ../assets/projects/library-app/home-1200.webp 1200w" sizes="(max-width: 980px) calc(100vw - 72px), min(760px, calc(55vw - 110px))" width="1440" height="1000" alt="Library App displaying six books in a responsive card layout" fetchpriority="high" decoding="async"></div></figure>
+    </div></section>
+    <section class="experience-section" id="experience">
+      <div class="story-heading"><p class="kicker">The experience</p><h2>A reading list that stays out of the way.</h2></div><div class="story-copy"><p>The interface centers on four useful collection-management actions. Each interaction is designed to be immediately understandable, with clear status, focused dialogs, and no unnecessary setup.</p></div>
+      <dl class="experience-grid"><div><dt>Add</dt><dd>Create a book with its title, author, page count, and current reading status through a validated dialog.</dd></div><div><dt>Track</dt><dd>Move a title between read and unread directly from its card, with the current state clearly communicated.</dd></div><div><dt>Remove</dt><dd>Delete a title through a clearly named confirmation flow that preserves keyboard focus and context.</dd></div><div><dt>Keep</dt><dd>Browser storage preserves the collection and its reading status across visits without requiring an account.</dd></div></dl>
     </section>
-
-    <section class="case-section" id="experience">
-      <div class="container library-experience-layout">
-        <div class="case-section-heading">
-          <p class="section-label">The experience</p>
-          <h2>Simple interactions, clearly presented</h2>
-          <p>The interface stays focused on a short set of useful collection-management actions. Each one is designed to remain understandable without instructions or visual clutter.</p>
-        </div>
-        <dl class="production-list library-experience-list">
-          <div><dt>Add</dt><dd>Create a book with its title, author, page count, and current reading status through a validated native dialog.</dd></div>
-          <div><dt>Track</dt><dd>Change a title between read and unread directly from its card, with the current state communicated visually and to assistive technology.</dd></div>
-          <div><dt>Remove</dt><dd>Delete a title through a clearly named confirmation dialog that preserves keyboard focus and context.</dd></div>
-          <div><dt>Keep</dt><dd>Browser storage preserves the collection and its reading status across visits without requiring an account.</dd></div>
-        </dl>
-      </div>
-      <div class="container library-dialog-showcase">
-        <figure class="case-media-card">
-          <img src="../assets/projects/library-app/add-book.webp" width="1440" height="1000" alt="Library App add-book dialog with fields for title, author, pages, and reading status" loading="lazy" decoding="async">
-          <figcaption>The add-book flow uses a focused native dialog with labeled fields, validation, visible keyboard focus, and a clear primary action.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="case-section case-section-alt" id="quality">
-      <div class="container case-split library-quality-layout">
-        <div class="case-copy-block">
-          <p class="section-label">Application quality</p>
-          <h2>Small in scope, careful in execution</h2>
-          <p>Library App keeps its implementation straightforward while applying clear semantics, predictable keyboard behavior, focus management, form validation, and resilient state handling.</p>
-          <p>The application is deliberately small but dependable: changes persist, malformed saved data is handled safely, and every core action works without a mouse.</p>
-        </div>
-        <dl class="production-list library-quality-list">
-          <div><dt>Semantic structure</dt><dd>Landmarks, articles, logical headings, labeled controls, and named dialogs provide a clearer document and interaction model.</dd></div>
-          <div><dt>Keyboard support</dt><dd>Visible focus states, appropriate focus movement, Escape-to-close behavior, and screen-reader announcements support accessible operation.</dd></div>
-          <div><dt>Persistent state</dt><dd>Versioned local storage preserves valid collections, including an intentionally empty library, and fails safely when saved data is unavailable.</dd></div>
-          <div><dt>Maintainable behavior</dt><dd>Centralized event handling, stable identifiers, and predictable dialog state keep the JavaScript compact and easier to reason about.</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="case-section technology-section" id="technology">
-      <div class="container case-split technology-layout">
-        <div>
-          <p class="section-label">Technology</p>
-          <h2>Small by design</h2>
-        </div>
-        <dl class="technology-list">
-          <div><dt>Front end</dt><dd>Vanilla JavaScript · Semantic HTML · Responsive CSS</dd></div>
-          <div><dt>Browser capabilities</dt><dd>DOM APIs · Web Storage · Native dialogs · Stable identifiers</dd></div>
-          <div><dt>Delivery</dt><dd>Git · GitHub · GitHub Pages</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <div class="case-closing library-closing">
-      <div class="container case-closing-inner">
-        <div class="case-closing-copy">
-          <p class="section-label">Explore the finished project</p>
-          <h2>Build a collection in the Library App.</h2>
-          <p>Add a title, update its reading status, and see how the focused interface adapts across screen sizes.</p>
-        </div>
-        <a class="btn case-primary-action" href="https://www.andywhite.cv/Library-App/" target="_blank" rel="noopener noreferrer">Visit Library App <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
+    <section class="product-section"><div class="section-title"><p class="kicker">Focused interaction</p><h2>Add the details.<br>Return to the collection.</h2><p>The add-book flow gathers only what the card needs, then returns the reader directly to the updated library.</p></div><figure class="product-feature"><div class="screen-stage"><div class="screen-frame"><img src="../assets/projects/library-app/add-book-1200.webp" srcset="../assets/projects/library-app/add-book-480.webp 480w, ../assets/projects/library-app/add-book-840.webp 840w, ../assets/projects/library-app/add-book-1200.webp 1200w" sizes="(max-width: 650px) calc(100vw - 72px), min(1120px, calc(100vw - 164px))" width="1440" height="1000" alt="Library App add-book dialog with fields for title, author, pages, and reading status" loading="lazy" decoding="async"></div></div><figcaption><strong>A concise add-book flow</strong><span>Labeled fields, native validation, visible keyboard focus, and an unambiguous primary action keep the dialog easy to complete.</span></figcaption></figure></section>
+    <section class="quality-section" id="quality"><div class="section-title section-title-light"><p class="kicker">Application quality</p><h2>Small in scope.<br>Careful in execution.</h2><p>The implementation stays straightforward while accounting for semantics, keyboard behavior, focus management, validation, and resilient state.</p></div><div class="quality-grid"><article><span>01</span><h3>Semantic structure</h3><p>Landmarks, articles, logical headings, labeled controls, and named dialogs create a clear interaction model.</p></article><article><span>02</span><h3>Keyboard support</h3><p>Visible focus, deliberate focus movement, Escape-to-close behavior, and announcements support non-pointer use.</p></article><article><span>03</span><h3>Persistent state</h3><p>Versioned local storage preserves valid collections and fails safely when saved data is unavailable.</p></article><article><span>04</span><h3>Maintainable behavior</h3><p>Centralized event handling, stable identifiers, and predictable dialog state keep the JavaScript compact.</p></article></div></section>
+    <section class="technology-section" id="technology"><div class="section-title"><p class="kicker">Technology</p><h2>Small by design.</h2><p>A deliberately lean browser application with no framework, account system, or server dependency.</p></div><dl class="technology-list"><div><dt>Front end</dt><dd>Vanilla JavaScript · Semantic HTML · Responsive CSS</dd></div><div><dt>Browser capabilities</dt><dd>DOM APIs · Web Storage · Native dialogs · Stable identifiers</dd></div><div><dt>Delivery</dt><dd>Git · GitHub · GitHub Pages</dd></div></dl></section>
+    <section class="case-closing"><div class="closing-mark" aria-hidden="true">+</div><p class="kicker">Explore the finished project</p><h2>Build your collection.</h2><p>Add a title, update its reading status, and see how the focused interface adapts across screen sizes.</p><div class="closing-actions"><a class="button button-solid" href="https://www.andywhite.cv/Library-App/" target="_blank" rel="noopener noreferrer">Visit Library App ↗</a><a class="button button-ghost" href="https://github.com/ComfyClicks/Library-App" target="_blank" rel="noopener noreferrer">View source ↗</a></div></section>
   </main>
-
-  <footer class="legacy-footer"><div class="container"><a href="../about.html">About</a><span>&copy; 2026 Andy White</span></div></footer>
+  <footer><a href="../about.html">About</a><span>&copy; 2026 Andy White</span></footer>
 </body>
 </html>
