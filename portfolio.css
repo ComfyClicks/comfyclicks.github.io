@@ -98,6 +98,7 @@ button { font:inherit; }
 .contact-message { grid-column:1/-1; }
 .contact-honeypot { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 .contact-submit { margin-top:24px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.contact-submit .cf-turnstile { display:flex; flex:1 1 auto; justify-content:center; }
 .contact-submit .button { cursor:pointer; background:var(--accent); }
 .contact-submit .button:disabled { cursor:wait; opacity:.65; transform:none; }
 .contact-status { min-height:24px; margin:18px 0 0; color:#d3d1c9; text-align:center; }
