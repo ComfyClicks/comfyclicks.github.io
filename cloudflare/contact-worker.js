@@ -31,20 +31,37 @@ export default {
     const name = String(form.get('name') || '').trim();
     const email = String(form.get('email') || '').trim();
     const message = String(form.get('message') || '').trim();
-    const token = String(form.get('cf-turnstile-response') || '');
+    const token = form.get('cf-turnstile-response');
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!name || name.length > 100 || !emailPattern.test(email) || email.length > 254 || !message || message.length > 5000) {
       return json({ error: 'Please complete every field with valid information.' }, 400);
     }
 
-    const verification = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ secret: env.TURNSTILE_SECRET_KEY, response: token, remoteip: request.headers.get('CF-Connecting-IP') }),
-    }).then((response) => response.json());
+    const forbidden = () => json({ error: 'Please complete the security check and try again.' }, 403);
+    if (typeof token !== 'string' || !token.length || token.length > 2048) return forbidden();
 
-    if (!verification.success) return json({ error: 'Please complete the security check and try again.' }, 403);
+    let verification;
+    try {
+      const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        signal: AbortSignal.timeout(10_000),
+        body: new URLSearchParams({
+          secret: env.TURNSTILE_SECRET_KEY,
+          response: token,
+          remoteip: request.headers.get('CF-Connecting-IP') || '',
+        }),
+      });
+      if (!response.ok) return forbidden();
+      verification = await response.json();
+    } catch {
+      return forbidden();
+    }
+
+    if (verification.success !== true || verification.action !== 'contact' || verification.hostname !== 'andywhite.cv') {
+      return forbidden();
+    }
 
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',

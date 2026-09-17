@@ -55,8 +55,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Inter:wght@400;500;600;700;800&amp;family=Libre+Caslon+Display&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="portfolio.css?v=4">
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script src="portfolio.js" defer></script>
+  <script src="portfolio.js?v=2" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=onTurnstileLoad" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -152,7 +152,7 @@
         </div>
         <label class="contact-honeypot" aria-hidden="true">Company website<input type="url" name="website" tabindex="-1" autocomplete="off"></label>
         <div class="contact-submit">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAE0Ggj4gbh1R_qEI" data-theme="dark"></div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAE0Ggj4gbh1R_qEI" data-action="contact" data-theme="dark"></div>
           <button class="button button-solid" type="submit">Send message</button>
         </div>
         <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>

@@ -22,6 +22,17 @@ window.addEventListener('resize', () => { if (window.innerWidth > 980) closeMenu
 
 const contactForm = document.querySelector('#contact-form');
 const contactStatus = document.querySelector('#contact-status');
+let contactWidgetId;
+
+window.onTurnstileLoad = () => {
+  const container = contactForm?.querySelector('.cf-turnstile');
+  if (!container || contactWidgetId !== undefined) return;
+  contactWidgetId = window.turnstile.render(container, {
+    sitekey: container.dataset.sitekey,
+    action: 'contact',
+    theme: container.dataset.theme,
+  });
+};
 
 contactForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -40,12 +51,12 @@ contactForm?.addEventListener('submit', async (event) => {
     if (!response.ok) throw new Error(result.error || 'Unable to send your message.');
 
     contactForm.reset();
-    window.turnstile?.reset();
     contactStatus.textContent = 'Thanks — your message has been sent.';
   } catch (error) {
     contactStatus.classList.add('is-error');
     contactStatus.textContent = error.message || 'Unable to send your message. Please try again.';
   } finally {
+    if (contactWidgetId !== undefined) window.turnstile?.reset(contactWidgetId);
     submitButton.disabled = false;
   }
 });
