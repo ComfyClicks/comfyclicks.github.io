@@ -111,7 +111,21 @@ retryButton.addEventListener('click', () => {
   securityStatus.focus();
   startSecurityCheck();
 });
-startSecurityCheck();
+
+const contactObserver = new IntersectionObserver((entries) => {
+  if (entries.some((entry) => entry.isIntersecting)) initializeSecurityCheck();
+}, { rootMargin: '250px' });
+
+function initializeSecurityCheck() {
+  contactObserver.disconnect();
+  contactObserver.takeRecords();
+
+  contactForm.removeEventListener('focusin', initializeSecurityCheck);
+  startSecurityCheck();
+}
+
+contactObserver.observe(contactForm);
+contactForm.addEventListener('focusin', initializeSecurityCheck);
 
 contactForm.addEventListener('submit', async (event) => {
   event.preventDefault();

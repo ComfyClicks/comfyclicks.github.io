@@ -1,3 +1,31 @@
+@font-face {
+  font-family:"Libre Caslon Display";
+  src:url("assets/fonts/libre-caslon-display-latin.woff2") format("woff2");
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+}
+@font-face {
+  font-family:"Inter";
+  src:url("assets/fonts/inter-latin.woff2") format("woff2");
+  font-style:normal;
+  font-weight:400 800;
+  font-display:swap;
+}
+@font-face {
+  font-family:"Space Grotesk";
+  src:url("assets/fonts/space-grotesk-latin.woff2") format("woff2");
+  font-style:normal;
+  font-weight:500 700;
+  font-display:swap;
+}
+@font-face {
+  font-family:"DM Mono";
+  src:url("assets/fonts/dm-mono-latin.woff2") format("woff2");
+  font-style:normal;
+  font-weight:500;
+  font-display:swap;
+}
 :root { --paper:#f3eee4; --paper-deep:#e5dccd; --projects:#eee6d9; --ink:#24332f; --muted:#56635e; --rule:#c7bbab; --accent:#974630; --dark:#29423b; --accent-on-dark:#f2a991; --white:#fffaf0; --max-width:1420px; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; scroll-padding-top:78px; }
