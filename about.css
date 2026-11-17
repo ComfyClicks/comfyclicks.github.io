@@ -1,4 +1,4 @@
-:root { --paper:#f3eee4; --ink:#24332f; --muted:#63706c; --rule:#c7bbab; --accent:#ac563f; --white:#fffaf0; }
+:root { --paper:#f3eee4; --ink:#24332f; --muted:#56635e; --rule:#c7bbab; --accent:#974630; --white:#fffaf0; }
 * { box-sizing:border-box; }
 body { min-height:100svh; margin:0; display:grid; grid-template-rows:auto 1fr auto; color:var(--ink); background:var(--paper); font-family:Inter,sans-serif; }
 a { color:inherit; }

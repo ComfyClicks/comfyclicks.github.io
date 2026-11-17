@@ -1,4 +1,4 @@
-:root { --paper:#f3eee4; --projects:#eee6d9; --ink:#24332f; --muted:#64706c; --rule:#c7bbab; --accent:#ac563f; }
+:root { --paper:#f3eee4; --projects:#eee6d9; --ink:#24332f; --muted:#56635e; --rule:#c7bbab; --accent:#974630; }
 * { box-sizing:border-box; }
 body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,sans-serif; }
 a { color:inherit; text-underline-offset:5px; }
