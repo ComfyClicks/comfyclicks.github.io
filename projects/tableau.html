@@ -25,6 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Inter:wght@400;600;700;800&amp;family=Libre+Caslon+Display&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tableau.css?v=2">
+  <link rel="stylesheet" href="short-rules.css?v=20261117">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -59,11 +60,11 @@
       <div class="story-copy">
         <p>The visualizations sit on top of a complete analytical pipeline. Each stage was designed to turn a large public dataset into consistent, queryable information while preserving the dimensions needed to compare place, time, issue type, and responsible agency.</p>
       </div>
-      <ol class="pipeline" aria-label="NYC 311 analytics data pipeline">
-        <li><span>01</span><h3>Acquire</h3><p>Retrieve a 100,000-record snapshot from NYC Open Data using Python and the Socrata API.</p></li>
-        <li><span>02</span><h3>Model</h3><p>Define a complaint fact table connected to date, agency, location, and complaint-type dimensions.</p></li>
-        <li><span>03</span><h3>Transform</h3><p>Clean, select, sort, deduplicate, enrich, and load the data through Pentaho ETL workflows.</p></li>
-        <li><span>04</span><h3>Explore</h3><p>Connect Tableau to the warehouse and turn the modeled data into interactive analytical views.</p></li>
+      <ol class="pipeline short-rule-grid" role="list" aria-label="NYC 311 analytics data pipeline">
+        <li><h3>Acquire</h3><p>Retrieve a 100,000-record snapshot from NYC Open Data using Python and the Socrata API.</p></li>
+        <li><h3>Model</h3><p>Define a complaint fact table connected to date, agency, location, and complaint-type dimensions.</p></li>
+        <li><h3>Transform</h3><p>Clean, select, sort, deduplicate, enrich, and load the data through Pentaho ETL workflows.</p></li>
+        <li><h3>Explore</h3><p>Connect Tableau to the warehouse and turn the modeled data into interactive analytical views.</p></li>
       </ol>
     </section>
 
@@ -110,7 +111,7 @@
         <h2>Four layers, one analytical workflow.</h2>
         <p>The project connects data acquisition, dimensional modeling, production-style ETL, and visual analysis into a single system.</p>
       </div>
-      <div class="stack-grid">
+      <div class="stack-grid short-rule-grid">
         <article><p class="stack-label">Acquisition</p><h3>Python &amp; Socrata</h3><p>API retrieval and tabular preparation with Python and Pandas.</p></article>
         <article><p class="stack-label">Warehouse</p><h3>Oracle SQL</h3><p>Fact-and-dimension schema, surrogate keys, indexes, and relational constraints.</p></article>
         <article><p class="stack-label">Transformation</p><h3>Pentaho</h3><p>Repeatable pipelines for selection, typing, deduplication, enrichment, lookups, and loading.</p></article>

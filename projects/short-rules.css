@@ -1,0 +1,61 @@
+/* Shared treatment for text-only feature and process groups. */
+.short-rule-grid {
+  --short-rule-color: var(--accent, var(--blue, currentColor));
+  gap: 40px 32px;
+  border: 0;
+}
+
+.short-rule-grid > :is(li, article, div) {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  padding: 32px 0 0;
+  border: 0;
+}
+
+.short-rule-grid > :is(li, article, div)::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 32px;
+  block-size: 2px;
+  background: var(--short-rule-color);
+}
+
+.short-rule-grid > :is(li, article, div) > :is(h3, strong, dt) {
+  margin-block: 0 18px;
+}
+
+.short-rule-grid > li > span,
+.short-rule-grid > article > .stack-label {
+  display: block;
+  margin-block: 0 16px;
+}
+
+.system-flow.short-rule-grid {
+  --short-rule-color: var(--cyan, #f2c14e);
+}
+
+.quality-grid.short-rule-grid {
+  --short-rule-color: var(--cyan);
+}
+
+.learning-grid.short-rule-grid {
+  --short-rule-color: var(--neon-dark);
+}
+
+.game-loop.short-rule-grid {
+  --short-rule-color: var(--neon);
+}
+
+.engineering-grid.short-rule-grid,
+.stack-grid.short-rule-grid {
+  --short-rule-color: #e58b99;
+}
+
+@media (max-width: 650px) {
+  .short-rule-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
