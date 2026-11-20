@@ -1,0 +1,20 @@
+# Andy White
+
+> Portfolio of Andy White, a full-stack software engineer with a background in business operations, data analysis, and business intelligence.
+
+## Portfolio
+
+- [Home](https://andywhite.cv/): Featured projects, technical skills, credentials, and contact information.
+- [About Andy White](https://andywhite.cv/about.html): Professional background and experience.
+
+## Selected projects
+
+- [BarterAid](https://andywhite.cv/projects/barteraid.html): Product case study for a live cross-asset market data and analysis platform.
+- [Interactive Retail Dashboard](https://andywhite.cv/projects/retail-dashboard.html): Inventory management, sales forecasting, and purchasing insights.
+- [Docketeer 18](https://andywhite.cv/projects/docketeer.html): Open-source case study on container vulnerability investigation and scan history.
+- [Comfy Cafe](https://andywhite.cv/projects/comfy-cafe.html): Restaurant website built with modular JavaScript and custom CSS.
+- [NYC 311 Analytics](https://andywhite.cv/projects/tableau.html): Dimensional data warehouse and interactive Tableau dashboard for public service requests.
+
+## Optional
+
+- [Other projects](https://andywhite.cv/projects/): Additional software projects and JavaScript demos.
