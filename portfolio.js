@@ -1,36 +1,3 @@
-const menuButton = document.querySelector('.menu-button');
-const navigation = document.querySelector('#primary-navigation');
-const header = menuButton.closest('.site-header');
-const mobileLayout = window.matchMedia('(max-width: 980px)');
-
-function setMenuOpen(open) {
-  menuButton.setAttribute('aria-expanded', String(open));
-  menuButton.textContent = open ? 'Close' : 'Menu';
-  navigation.classList.toggle('open', open);
-}
-
-menuButton.addEventListener('click', () => setMenuOpen(!navigation.classList.contains('open')));
-header.addEventListener('keydown', (event) => {
-  if (event.key !== 'Escape' || !navigation.classList.contains('open')) return;
-  setMenuOpen(false);
-  menuButton.focus();
-});
-header.addEventListener('focusout', (event) => {
-  if (!header.contains(event.relatedTarget)) setMenuOpen(false);
-});
-navigation.addEventListener('click', (event) => {
-  const link = event.target.closest('a');
-  if (!link || !navigation.classList.contains('open')) return;
-  const destination = document.getElementById(link.hash.slice(1));
-  if (destination) {
-    destination.setAttribute('tabindex', '-1');
-    destination.focus({ preventScroll: true });
-  }
-  setMenuOpen(false);
-});
-mobileLayout.addEventListener('change', () => setMenuOpen(false));
-header.classList.add('menu-ready');
-
 const contactForm = document.querySelector('#contact-form');
 const contactStatus = document.querySelector('#contact-status');
 const securityStatus = document.querySelector('#security-status');
