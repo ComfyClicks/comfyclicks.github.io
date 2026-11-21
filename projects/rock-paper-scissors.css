@@ -76,14 +76,23 @@
   padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 
-.rps-project .product-section h2 {
-  margin: 0 0 1.25rem;
-  text-align: center;
-  font: 400 clamp(2rem, 1.6rem + 2vw, 3.5rem)/1 "Libre Caslon Display", serif;
+.rps-project .rematch-copy {
+  max-inline-size: 36rem;
 }
 
-.rps-project .product-section figure {
-  margin-inline: auto;
+.rps-project .rematch-copy h2 {
+  margin: 0 0 1.25rem;
+  font: 400 clamp(2.25rem, 1.5rem + 3vw, 4.75rem)/.98 "Libre Caslon Display", serif;
+  text-wrap: balance;
+}
+
+.rps-project .rematch-copy p {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.rps-project .rematch-copy p:last-child {
+  margin-block-end: 0;
 }
 
 @media (max-width: 800px) {
