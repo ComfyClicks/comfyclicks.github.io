@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Docketeer Website Refactor | Andy White</title>
+  <meta name="description" content="A frontend overhaul that cut the public Docketeer website’s initial mobile payload by 98.7% in PageSpeed Insights lab tests.">
+  <meta name="theme-color" content="#081521">
+  <link rel="canonical" href="https://andywhite.cv/projects/docketeer-website.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Docketeer Website Refactor | Andy White">
+  <meta property="og:description" content="Canvas motion, deferred demos, and measured performance gains on the public Docketeer website.">
+  <meta property="og:url" content="https://andywhite.cv/projects/docketeer-website.html">
+  <meta property="og:image" content="https://andywhite.cv/assets/projects/docketeer-website/desktop-hero-1200.webp">
+  <meta property="og:image:alt" content="Docketeer website hero with a whale mascot against a star field">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="../assets/projects/docketeer-website/desktop-hero-840.webp" imagesrcset="../assets/projects/docketeer-website/desktop-hero-480.webp 480w, ../assets/projects/docketeer-website/desktop-hero-840.webp 840w, ../assets/projects/docketeer-website/desktop-hero-1200.webp 1200w" imagesizes="(max-width: 650px) calc(100vw - 72px), (max-width: 1050px) calc(100vw - 170px), min(760px, calc(62vw - 140px))" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Inter:wght@400;600;700;800&amp;family=Libre+Caslon+Display&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docketeer.css?v=2">
+  <link rel="stylesheet" href="docketeer-website.css">
+  <script src="docketeer-results.js" defer></script>
+  <script src="docketeer-star-preview.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="case-header">
+    <a class="wordmark" href="../">Andy White<span>.</span></a>
+    <nav aria-label="Case study navigation"><a href="#problem">Problem</a><a href="#decisions">Refactor</a><a href="#results">Results</a></nav>
+    <a class="back-link" href="../#projects">Back to portfolio</a>
+  </header>
+
+  <main id="main-content">
+    <section class="case-hero">
+      <div class="hero-copy">
+        <p class="kicker">Open-source frontend engineering</p>
+        <h1>Docketeer website refactor</h1>
+        <p class="tagline">Modernizing Docketeer.io</p>
+        <p class="lede">I overhauled Docketeer’s public website, updating its aging stack and reworking how it loaded and displayed demos. The refactor brought the project from <strong>31 to 19 direct dependencies</strong>. Payload fell <strong>98.7%</strong> and performance score rose <strong>104%</strong>.</p>
+        <div class="hero-actions">
+          <a class="button button-solid" href="https://docketeer.io/">Visit Docketeer ↗</a>
+          <a class="text-link" href="https://github.com/ComfyClicks/Docketeer-Website-2024/pull/4">View merged PR #4 ↗</a>
+        </div>
+      </div>
+      <figure class="hero-media screen-stage screen-stage-dark" id="star-preview">
+        <div class="screen-frame">
+          <img src="../assets/projects/docketeer-website/desktop-hero-840.webp" srcset="../assets/projects/docketeer-website/desktop-hero-480.webp 480w, ../assets/projects/docketeer-website/desktop-hero-840.webp 840w, ../assets/projects/docketeer-website/desktop-hero-1200.webp 1200w" sizes="(max-width: 650px) calc(100vw - 72px), (max-width: 1050px) calc(100vw - 170px), min(760px, calc(62vw - 140px))" width="1440" height="900" alt="Docketeer homepage with a whale in an astronaut helmet beside the introduction, against a star field" fetchpriority="high">
+          <canvas class="star-preview-layer" width="720" height="450" aria-hidden="true" hidden></canvas>
+          <img class="star-preview-layer" data-src="../assets/projects/docketeer-website/desktop-hero-foreground.webp" width="1200" height="750" alt="" hidden>
+        </div>
+      </figure>
+    </section>
+
+    <section class="story-section" id="problem">
+      <div class="story-heading"><p class="kicker">The problem</p><h2>Outdated dependencies. A heavy first load. A shifting page.</h2></div>
+      <div class="story-copy">
+        <p>Docketeer is an open-source tool for managing Docker containers and Kubernetes clusters.</p>
+        <p>The site had fallen behind on dependencies, and its legacy build and test setup had failing checks. Large videos downloaded before visitors needed them, pushing the initial mobile payload above 16,000 KiB. Page elements shifted while loading, mobile navigation was broken, and keyboard focus was unreliable. Before the release, the live site scored 75 on mobile and 49 on desktop out of 100 for performance in PageSpeed Insights.</p>
+      </div>
+    </section>
+
+    <section class="story-section refactor-section" id="decisions" aria-labelledby="refactor-title">
+      <div class="story-heading"><p class="kicker">Site modernization</p><h2 id="refactor-title">What changed</h2></div>
+      <div class="story-copy">
+        <p>Docketeer’s website now loads with far less data and is easier to use on mobile or with a keyboard. A lighter Canvas backdrop and optimized images reduce the work of loading the page. Demo videos wait until needed, and the player reserves space so the page stays steady as media loads. I repaired the mobile menu, section links, and keyboard focus, and added controls for playback and motion.</p>
+        <p>I updated React, Vite, and TypeScript, cut direct dependencies from 31 to 19, and reduced source and styles by 23% by consolidating shared code and simplifying stylesheets. I added unit and browser tests, GitHub Actions build checks, and production verification, and updated search and sharing metadata, the sitemap, and security headers.</p>
+      </div>
+      <figure class="feature-card refactor-demo">
+        <video controls playsinline loading="lazy" preload="none" width="1280" height="720" poster="../assets/projects/docketeer-website/demo-walkthrough-poster.webp" aria-label="Docketeer walkthrough showing how to select, play, and stop demos">
+          <source src="../assets/projects/docketeer-website/demo-walkthrough-hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L93.90"'>
+          <source src="../assets/projects/docketeer-website/demo-walkthrough.mp4" type='video/mp4; codecs="avc1.64001f"'>
+          <a href="../assets/projects/docketeer-website/demo-walkthrough.mp4">Open the demo walkthrough</a>
+        </video>
+      </figure>
+    </section>
+
+    <section class="release-section" id="results">
+      <div class="section-title"><p class="kicker">Measured results</p><h2>Smaller loads. Less layout shift.</h2></div>
+      <div class="results-tabs" role="tablist" aria-label="Ways to view the measured results" hidden>
+        <button type="button" role="tab" id="results-bars-tab" aria-selected="true" aria-controls="results-bars">Before &amp; after</button>
+        <button type="button" role="tab" id="results-change-tab" aria-selected="false" aria-controls="results-change" tabindex="-1">Change</button>
+        <button type="button" role="tab" id="results-table-tab" aria-selected="false" aria-controls="results-table" tabindex="-1">Data table</button>
+      </div>
+      <div id="results-bars" class="results-grid">
+        <article class="metric-chart">
+          <h3>Performance score</h3>
+          <div class="metric-device">
+            <h4>Mobile <span>+24 points</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 75.0000%"></span></span><span class="metric-value">75 / 100</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 99.0000%"></span></span><span class="metric-value">99 / 100</span></dd></div>
+            </dl>
+          </div>
+          <div class="metric-device">
+            <h4>Desktop <span>+51 points</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 49.0000%"></span></span><span class="metric-value">49 / 100</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 100.0000%"></span></span><span class="metric-value">100 / 100</span></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="metric-chart">
+          <h3>Initial network payload</h3>
+          <div class="metric-device">
+            <h4>Mobile <span>98.7% smaller</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 100.0000%"></span></span><span class="metric-value">16,438 KiB</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 1.3262%"></span></span><span class="metric-value">218 KiB</span></dd></div>
+            </dl>
+          </div>
+          <div class="metric-device">
+            <h4>Desktop <span>97.3% smaller</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 49.4707%"></span></span><span class="metric-value">8,132 KiB</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 1.3201%"></span></span><span class="metric-value">217 KiB</span></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="metric-chart">
+          <h3>Largest Contentful Paint</h3>
+          <div class="metric-device">
+            <h4>Mobile <span>25% less time</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 100.0000%"></span></span><span class="metric-value">2.4 s</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 75.0000%"></span></span><span class="metric-value">1.8 s</span></dd></div>
+            </dl>
+          </div>
+          <div class="metric-device">
+            <h4>Desktop <span>56% less time</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 37.5000%"></span></span><span class="metric-value">0.9 s</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 16.6667%"></span></span><span class="metric-value">0.4 s</span></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="metric-chart">
+          <h3>Cumulative Layout Shift</h3>
+          <div class="metric-device">
+            <h4>Mobile <span>72% lower</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 18.8395%"></span></span><span class="metric-value">0.250</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 5.2751%"></span></span><span class="metric-value">0.070</span></dd></div>
+            </dl>
+          </div>
+          <div class="metric-device">
+            <h4>Desktop <span>99.9% lower</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 100.0000%"></span></span><span class="metric-value">1.327</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 0.0754%"></span></span><span class="metric-value">0.001</span></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="metric-chart">
+          <h3>Total Blocking Time</h3>
+          <div class="metric-device">
+            <h4>Mobile <span>230 ms less</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 37.0968%"></span></span><span class="metric-value">230 ms</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 0%"></span></span><span class="metric-value">0 ms</span></dd></div>
+            </dl>
+          </div>
+          <div class="metric-device">
+            <h4>Desktop <span>620 ms less</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 100%"></span></span><span class="metric-value">620 ms</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 0%"></span></span><span class="metric-value">0 ms</span></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="metric-chart">
+          <h3>Codebase</h3>
+          <div class="metric-device">
+            <h4>Direct dependencies <span>39% fewer</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 100%"></span></span><span class="metric-value">31</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 61.2903%"></span></span><span class="metric-value">19</span></dd></div>
+            </dl>
+          </div>
+          <div class="metric-device">
+            <h4>Source and styles <span>23% fewer lines</span></h4>
+            <dl>
+              <div class="metric-row before"><dt>Before</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 100%"></span></span><span class="metric-value">2,157 lines</span></dd></div>
+              <div class="metric-row after"><dt>After</dt><dd><span class="metric-track" aria-hidden="true"><span style="--bar-width: 76.8660%"></span></span><span class="metric-value">1,658 lines</span></dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+      <div id="results-change" role="tabpanel" aria-labelledby="results-change-tab" hidden></div>
+      <div id="results-table" role="tabpanel" aria-labelledby="results-table-tab" hidden></div>
+      <div class="results-source">
+        <p><a href="https://pagespeed.web.dev/analysis/https-docketeer-io/i0lpiykegx?form_factor=mobile">Pre-release PageSpeed Insights audit ↗</a> <a href="https://pagespeed.web.dev/analysis/https-docketeer-io/4vt9sbw5yz?form_factor=desktop">Post-release PageSpeed Insights audit ↗</a></p>
+      </div>
+    </section>
+
+    <section class="story-section release-story">
+      <div class="story-heading"><p class="kicker"><time datetime="2026-11-21">November 21, 2026</time></p><h2>Release</h2></div>
+      <div class="story-copy">
+        <p>The production release passed 20 deployment artifact checks and 19 desktop and mobile smoke tests.</p>
+        <p><a href="https://github.com/ComfyClicks/Docketeer-Website-2024/blob/master/docs/2026-REFACTOR.md">Technical report ↗</a></p>
+        <p><a href="docketeer.html">Explore the Docketeer 18 application case study →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer><a href="../about.html">About</a><span>© 2026 Andy White</span></footer>
+</body>
+</html>

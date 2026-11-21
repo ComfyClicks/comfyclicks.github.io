@@ -12,6 +12,7 @@
 - [BarterAid](https://andywhite.cv/projects/barteraid.html): Product case study for a live cross-asset market data and analysis platform.
 - [Interactive Retail Dashboard](https://andywhite.cv/projects/retail-dashboard.html): Inventory management, sales forecasting, and purchasing insights.
 - [Docketeer 18](https://andywhite.cv/projects/docketeer.html): Open-source case study on container vulnerability investigation and scan history.
+- [Docketeer Website Refactor](https://andywhite.cv/projects/docketeer-website.html): Frontend modernization of the public site with before-and-after PageSpeed Insights charts.
 - [Comfy Cafe](https://andywhite.cv/projects/comfy-cafe.html): Restaurant website built with modular JavaScript and custom CSS.
 - [NYC 311 Analytics](https://andywhite.cv/projects/tableau.html): Dimensional data warehouse and interactive Tableau dashboard for public service requests.
 

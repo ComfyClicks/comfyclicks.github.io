@@ -77,4 +77,5 @@ dashboardLoadButton?.addEventListener('click', () => {
     iframe.title = 'Interactive Retail Dashboard workbook';
     iframe.allowFullscreen = true;
     dashboardEmbed.replaceChildren(iframe);
+    iframe.focus({ preventScroll: true });
 });
