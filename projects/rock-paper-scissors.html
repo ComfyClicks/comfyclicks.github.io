@@ -25,7 +25,7 @@
       <div class="case-hero-inner">
         <div class="hero-copy">
           <h1 id="project-title">Rock Paper Scissors</h1>
-          <p class="lede">I built this game for The Odin Project with vanilla JavaScript. In the refresh, I kept the original peach palette and emoji controls and reworked how the game resolves moves, tracks rematches, and handles replay.</p>
+          <p class="lede">Built for The Odin Project with vanilla JavaScript.</p>
           <div class="hero-actions">
             <a class="button button-solid" href="https://comfyclicks.github.io/Rock-Paper-Scissors/">Play the game</a>
             <a class="text-link" href="https://github.com/ComfyClicks/Rock-Paper-Scissors">View source</a>
@@ -43,9 +43,7 @@
       <div class="case-hero-inner">
         <div class="rematch-copy">
           <h2 id="rematches">How it works</h2>
-          <p><strong>Round logic.</strong> Each move defines what it beats. JavaScript checks both moves against that lookup, awards a point to the winner, and updates the score and progress bar together. Ties leave both scores alone.</p>
-          <p><strong>Match state.</strong> At five points, the game increments the winner’s match tally and disables the move buttons. Replay clears the round number, hands, and points. The match tally stays in memory until the page reloads.</p>
-          <p><strong>Stable replay.</strong> The rule text and replay button share one CSS Grid cell. The hidden element still takes up space, so the row keeps its height. Keyboard focus moves to <strong>Play again</strong> at match end and returns to Rock on reset.</p>
+          <p>A move lookup decides each round. Replay clears the score and keeps the match tally until refresh. A shared CSS Grid cell lets the replay button appear without shifting the board.</p>
         </div>
         <figure class="screen-stage game-screen">
           <div class="screen-frame">
