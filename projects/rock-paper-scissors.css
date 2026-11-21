@@ -1,0 +1,93 @@
+.rps-project {
+  --paper: #fff5ed;
+  --paper-deep: #fce4d8;
+  --ink: #382019;
+  --dark: #382019;
+  --white: #fffaf6;
+  --cyan: #f4b79c;
+  --blue: #8f3c2b;
+}
+
+.rps-project .case-header {
+  grid-template-columns: 1fr auto;
+  background: var(--dark);
+}
+
+.rps-project .back-link,
+.rps-project .lede {
+  color: #f8d3c2;
+}
+
+.rps-project .case-hero {
+  min-height: auto;
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+  background: radial-gradient(ellipse at top right, #653526, transparent 65%), var(--dark);
+}
+
+.rps-project .case-hero-inner {
+  max-width: 73rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+}
+
+.rps-project .hero-copy h1 {
+  margin-block-start: 0;
+  font-size: clamp(3rem, 1.8rem + 5vw, 6.5rem);
+  text-wrap: balance;
+}
+
+.rps-project .hero-actions {
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.rps-project .button-solid {
+  color: var(--ink);
+  background: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.rps-project .button-solid:hover,
+.rps-project .button-solid:focus-visible {
+  background: #ffd6c0;
+}
+
+.rps-project .game-screen {
+  width: min(100%, 30rem);
+  justify-self: center;
+  gap: .65rem;
+  padding: clamp(.65rem, 2vw, 1.25rem);
+  border: 1px solid #d29980;
+  border-radius: 10px;
+  background: #ffd6c0;
+  color: var(--ink);
+}
+
+.rps-project .screen-frame {
+  border-radius: 4px;
+  box-shadow: 0 8px 22px #38201926;
+}
+
+.rps-project figcaption {
+  font-size: .875rem;
+}
+
+.rps-project .product-section {
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.rps-project .product-section h2 {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font: 400 clamp(2rem, 1.6rem + 2vw, 3.5rem)/1 "Libre Caslon Display", serif;
+}
+
+.rps-project .product-section figure {
+  margin-inline: auto;
+}
+
+@media (max-width: 800px) {
+  .rps-project .case-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
