@@ -32,3 +32,6 @@ footer a { text-decoration:none; }
 @media (max-width:980px) { .project-grid { grid-template-columns:1fr; } .project-card:last-child { grid-column:auto; width:auto; } }
 @media (max-width:620px) { .site-header { min-height:68px; padding-inline:22px; } .archive-page { padding-inline:22px; } .archive-heading h1 { font-size:56px; } .product-visual { min-height:280px; padding:18px; } .browser-frame { width:100%; } .browser-frame-portrait { width:auto; } footer { padding-block:28px; flex-direction:column; align-items:flex-start; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition-duration:.01ms!important; } }
+
+/* Keep the frame within the 1440:1000 image's width at its 340px height cap. */
+.browser-frame-library { max-width:489px; }
