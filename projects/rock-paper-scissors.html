@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rock Paper Scissors | Andy White</title>
-  <meta name="description" content="Andy White’s first-to-five browser game for The Odin Project, with a refreshed design and a running match tally.">
+  <meta name="description" content="A vanilla JavaScript game by Andy White, with table-driven rules, separate round and match state, and a layout-stable replay flow.">
   <meta name="theme-color" content="#382019">
   <link rel="canonical" href="https://andywhite.cv/projects/rock-paper-scissors.html">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -25,7 +25,7 @@
       <div class="case-hero-inner">
         <div class="hero-copy">
           <h1 id="project-title">Rock Paper Scissors</h1>
-          <p class="lede">I built this first-to-five browser game for The Odin Project with vanilla JavaScript. When I revisited it, I kept the original peach palette, framed title, and oversized emoji, then brought the controls, hands, and scores into one board.</p>
+          <p class="lede">I built this game for The Odin Project with vanilla JavaScript. In the refresh, I kept the original peach palette and emoji controls and reworked how the game resolves moves, tracks rematches, and handles replay.</p>
           <div class="hero-actions">
             <a class="button button-solid" href="https://comfyclicks.github.io/Rock-Paper-Scissors/">Play the game</a>
             <a class="text-link" href="https://github.com/ComfyClicks/Rock-Paper-Scissors">View source</a>
@@ -42,9 +42,10 @@
     <section class="product-section" aria-labelledby="rematches">
       <div class="case-hero-inner">
         <div class="rematch-copy">
-          <h2 id="rematches">Designing for rematches</h2>
-          <p>Round scores and match wins sit in matching rows. The top row shows who’s closer to five. The bottom row tracks who’s ahead across rematches until the page is refreshed.</p>
-          <p>At the end of a match, <strong>Play again</strong> takes the place of the rule text in the same row. The board stays put, and keyboard focus moves to the replay button, then back to the first move when a new match starts.</p>
+          <h2 id="rematches">How it works</h2>
+          <p><strong>Round logic.</strong> Each move defines what it beats. JavaScript checks both moves against that lookup, awards a point to the winner, and updates the score and progress bar together. Ties leave both scores alone.</p>
+          <p><strong>Match state.</strong> At five points, the game increments the winner’s match tally and disables the move buttons. Replay clears the round number, hands, and points. The match tally stays in memory until the page reloads.</p>
+          <p><strong>Stable replay.</strong> The rule text and replay button share one CSS Grid cell. The hidden element still takes up space, so the row keeps its height. Keyboard focus moves to <strong>Play again</strong> at match end and returns to Rock on reset.</p>
         </div>
         <figure class="screen-stage game-screen">
           <div class="screen-frame">
