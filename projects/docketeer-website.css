@@ -373,10 +373,10 @@ canvas.star-preview-layer {
   line-height: 1.5;
 }
 
-.dependency-changes summary {
+.dependency-changes h3 {
+  margin: 0;
   padding-block: 12px;
-  font-weight: 700;
-  cursor: pointer;
+  font-size: 1.125rem;
 }
 
 .dependency-changes dl {

@@ -20,7 +20,7 @@
   <link rel="preload" as="image" href="../assets/projects/docketeer-website/desktop-hero-840.webp" imagesrcset="../assets/projects/docketeer-website/desktop-hero-480.webp 480w, ../assets/projects/docketeer-website/desktop-hero-840.webp 840w, ../assets/projects/docketeer-website/desktop-hero-1200.webp 1200w" imagesizes="(max-width: 650px) calc(100vw - 72px), (max-width: 1050px) calc(100vw - 170px), min(760px, calc(62vw - 140px))" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Inter:wght@400;600;700;800&amp;family=Libre+Caslon+Display&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="docketeer.css?v=2">
-  <link rel="stylesheet" href="docketeer-website.css?v=3">
+  <link rel="stylesheet" href="docketeer-website.css?v=4">
   <script src="docketeer-results.js" defer></script>
   <script src="docketeer-star-preview.js" defer></script>
 </head>
@@ -188,8 +188,8 @@
       </div>
       <div id="results-change" role="tabpanel" aria-labelledby="results-change-tab" hidden></div>
       <div id="results-table" role="tabpanel" aria-labelledby="results-table-tab" hidden></div>
-      <details class="dependency-changes">
-        <summary>Dependency changes</summary>
+      <section class="dependency-changes" aria-labelledby="dependency-changes-title">
+        <h3 id="dependency-changes-title">Dependency changes</h3>
         <dl>
           <div><dt>Star field</dt><dd><strong>Three.js and React Three Fiber → Canvas 2D</strong><br>The animation now runs on a browser API with no 3D library.</dd></div>
           <div><dt>Unit testing</dt><dd><strong>Jest, Babel, and ts-jest → Vitest</strong><br>The test setup now uses the same toolchain as the Vite build.</dd></div>
@@ -198,7 +198,7 @@
           <div><dt>Build environment</dt><dd>Standardized the build on Node.js 26 and npm 11.</dd></div>
         </dl>
         <p><a href="https://github.com/ComfyClicks/Docketeer-Website-2024/compare/22d612c...39eaf7d">Compare the source commits ↗</a></p>
-      </details>
+      </section>
       <div class="results-source">
         <p><a href="https://pagespeed.web.dev/analysis/https-docketeer-io/i0lpiykegx?form_factor=mobile">Pre-release PageSpeed Insights audit ↗</a> <a href="https://pagespeed.web.dev/analysis/https-docketeer-io/4vt9sbw5yz?form_factor=desktop">Post-release PageSpeed Insights audit ↗</a></p>
       </div>
