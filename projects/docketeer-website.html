@@ -20,7 +20,7 @@
   <link rel="preload" as="image" href="../assets/projects/docketeer-website/desktop-hero-840.webp" imagesrcset="../assets/projects/docketeer-website/desktop-hero-480.webp 480w, ../assets/projects/docketeer-website/desktop-hero-840.webp 840w, ../assets/projects/docketeer-website/desktop-hero-1200.webp 1200w" imagesizes="(max-width: 650px) calc(100vw - 72px), (max-width: 1050px) calc(100vw - 170px), min(760px, calc(62vw - 140px))" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Inter:wght@400;600;700;800&amp;family=Libre+Caslon+Display&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="docketeer.css?v=2">
-  <link rel="stylesheet" href="docketeer-website.css">
+  <link rel="stylesheet" href="docketeer-website.css?v=2">
   <script src="docketeer-results.js" defer></script>
   <script src="docketeer-star-preview.js" defer></script>
 </head>
@@ -54,9 +54,8 @@
     </section>
 
     <section class="story-section" id="problem">
-      <div class="story-heading"><p class="kicker">The problem</p><h2>Outdated dependencies. A heavy first load. A shifting page.</h2></div>
+      <div class="story-heading"><p class="kicker">The problem</p><h2>Outdated dependencies.<br> A heavy first load.<br> A shifting page.</h2></div>
       <div class="story-copy">
-        <p>Docketeer is an open-source tool for managing Docker containers and Kubernetes clusters.</p>
         <p>The site had fallen behind on dependencies, and its legacy build and test setup had failing checks. Large videos downloaded before visitors needed them, pushing the initial mobile payload above 16,000 KiB. Page elements shifted while loading, mobile navigation was broken, and keyboard focus was unreliable. Before the release, the live site scored 75 on mobile and 49 on desktop out of 100 for performance in PageSpeed Insights.</p>
       </div>
     </section>

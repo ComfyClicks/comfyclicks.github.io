@@ -1,5 +1,52 @@
+.case-hero {
+  padding-inline: max(clamp(24px, 6vw, 96px), calc((100% - 82.5rem) / 2));
+}
+
 .hero-copy h1 {
   font-size: clamp(58px, 6.7vw, 104px);
+}
+
+.story-section,
+.release-section {
+  padding-block: clamp(52px, 7vw, 104px);
+  padding-inline: max(clamp(24px, 6vw, 96px), calc((100% - 77.5rem) / 2));
+}
+
+.story-section {
+  gap: clamp(24px, 3vw, 44px) clamp(32px, 5vw, 80px);
+}
+
+.story-heading h2,
+.section-title h2 {
+  margin-top: 12px;
+  font-size: clamp(2.375rem, 1.75rem + 2.5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+
+.story-copy {
+  align-self: start;
+  max-width: 60ch;
+  font-size: clamp(1.0625rem, .95rem + .3vw, 1.1875rem);
+  line-height: 1.6;
+}
+
+.story-copy p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 1051px) {
+  .story-section:not(.refactor-section) .story-copy {
+    padding-top: 24px;
+  }
+
+  .refactor-section .story-heading {
+    align-self: center;
+  }
+}
+
+.section-title {
+  margin-bottom: clamp(28px, 3.5vw, 50px);
 }
 
 .refactor-section {
@@ -27,14 +74,14 @@
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19.5rem), 1fr));
+  gap: 16px;
   max-width: var(--max-width);
   margin-inline: auto;
 }
 
 .metric-chart {
-  padding: clamp(18px, 3vw, 36px);
+  padding: clamp(14px, 1.6vw, 22px);
   border: 1px solid var(--rule);
   border-radius: 10px;
   background: var(--white);
@@ -42,17 +89,17 @@
 
 .metric-chart h3 {
   margin: 0;
-  font: 700 clamp(21px, 2.4vw, 32px)/1.12 "Space Grotesk", sans-serif;
+  font: 700 clamp(1.1875rem, 1rem + .55vw, 1.5rem)/1.15 "Space Grotesk", sans-serif;
 }
 
 .metric-device {
-  margin-top: 22px;
-  padding-top: 16px;
+  margin-top: 14px;
+  padding-top: 10px;
   border-top: 1px solid var(--rule);
 }
 
 .metric-device h4 {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -67,7 +114,7 @@
 .metric-device dl {
   margin: 0;
   display: grid;
-  gap: 8px;
+  gap: 5px;
 }
 
 .metric-row {
@@ -121,12 +168,6 @@
 
 .release-story {
   background: var(--paper-deep);
-}
-
-@media (max-width: 760px) {
-  .results-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .results-tabs {
