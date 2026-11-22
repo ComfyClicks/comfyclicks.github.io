@@ -362,3 +362,43 @@
 canvas.star-preview-layer {
   background: linear-gradient(#000, #000019);
 }
+
+.dependency-changes {
+  max-width: var(--max-width);
+  margin: 16px auto 0;
+  padding-inline: 16px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--white);
+  line-height: 1.5;
+}
+
+.dependency-changes summary {
+  padding-block: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dependency-changes dl {
+  margin: 0;
+}
+
+.dependency-changes dl > div {
+  padding-block: 10px;
+  border-top: 1px solid var(--rule);
+}
+
+.dependency-changes dt {
+  font-size: .8125rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.dependency-changes dd {
+  margin: 2px 0 0;
+}
+
+.dependency-changes p {
+  margin: 8px 0 14px;
+  font-size: .875rem;
+}
